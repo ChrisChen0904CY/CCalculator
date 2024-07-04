@@ -27,7 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         utils.h
         utils.cpp
         historyview.h historyview.cpp historyview.ui
-
+        logoConfig.rc
 
 
     )
