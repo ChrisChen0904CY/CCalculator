@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>rcs/sci.png</file>
+        <file>rcs/complex.png</file>
+        <file>rcs/practice.png</file>
+        <file>rcs/my_ico.png</file>
+        <file>rcs/my_logo.png</file>
+        <file>rcs/left.png</file>
+        <file>rcs/right.png</file>
+        <file>rcs/history.png</file>
+    </qresource>
+</RCC>

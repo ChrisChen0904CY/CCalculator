@@ -1,0 +1,2566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>CCalculator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/rcs/my_ico.png</normaloff>:/rcs/my_ico.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	background-color: rgb(255, 255, 255);
+};</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="20,1,2,40,1">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-bottom: none;
+    padding: 5px;
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-top: none;
+    padding: 5px;
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,1,5,1,5,1,11,1,11,1,5">
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
+          <property name="toolTip">
+           <string>算式错误检验</string>
+          </property>
+          <property name="whatsThis">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 26, 106);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 5, 50);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 15, 80); /* 调深的颜色 */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>E</string>
+          </property>
+          <property name="shortcut">
+           <string>Ctrl+E</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>左括号</string>
+          </property>
+          <property name="whatsThis">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 157, 87);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 100, 45);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color:rgb(205, 100, 50); /* 调深的颜色 */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>(</string>
+          </property>
+          <property name="shortcut">
+           <string>(</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_8">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>右括号</string>
+          </property>
+          <property name="whatsThis">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 157, 87);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 100, 45);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color:rgb(205, 100, 50); /* 调深的颜色 */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>)</string>
+          </property>
+          <property name="shortcut">
+           <string>)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="maximumSize">
+           <size>
+            <width>160</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>160</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="whatsThis">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-image: url(:/rcs/my_logo.png);
+background-repeat: no-repeat;
+background-position: center;
+border-color: rgb(168, 25, 5);
+border-width: 1px;
+border-style: solid;
+border-radius: 5px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_33">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="minimumSize">
+           <size>
+            <width>160</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>160</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>退格</string>
+          </property>
+          <property name="whatsThis">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    font: 700 20pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 68, 6);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 5);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(204, 54, 5);  /* 调深的颜色 */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>←</string>
+          </property>
+          <property name="shortcut">
+           <string>Backspace</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_5">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>清空所有输入</string>
+          </property>
+          <property name="whatsThis">
+           <string/>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 68, 6);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 5);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(204, 54, 5);  /* 调深的颜色 */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>C</string>
+          </property>
+          <property name="shortcut">
+           <string>Ctrl+C</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,5,1,5,1,5,1,5">
+        <item>
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="5,1,5,1,5,1,5,1,5,1,5,1,5,1,5">
+          <item>
+           <widget class="QPushButton" name="pushButton_6">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>一个一个一个</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+            <property name="shortcut">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_12">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_7">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>40</horstretch>
+              <verstretch>40</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>2</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>2</string>
+            </property>
+            <property name="shortcut">
+             <string>2</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_11">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_8">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>3</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>3</string>
+            </property>
+            <property name="shortcut">
+             <string>3</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_29">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_30">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>正弦函数sin</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 10pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>sin</string>
+            </property>
+            <property name="shortcut">
+             <string>S</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_25">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_34">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>正切函数tan</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 10pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>tan</string>
+            </property>
+            <property name="shortcut">
+             <string>T</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_10">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_9">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>+</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 18pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(14, 183, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(5, 120, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(14, 133, 255);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+            <property name="shortcut">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_9">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_10">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>×</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 18pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(132, 225, 0);
+    color: rgb(255, 255, 255);
+	border-color: rgb(100, 168, 0);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(82, 205, 0);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>×</string>
+            </property>
+            <property name="shortcut">
+             <string>*</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_11">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>百分号</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>%</string>
+            </property>
+            <property name="shortcut">
+             <string>%</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="5,1,5,1,5,1,5,1,5,1,5,1,5,1,5">
+          <item>
+           <widget class="QPushButton" name="pushButton_12">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>4444！！！！</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>4</string>
+            </property>
+            <property name="shortcut">
+             <string>4</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_16">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_13">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>5</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>5</string>
+            </property>
+            <property name="shortcut">
+             <string>5</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_15">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_14">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>单走一张六</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>6</string>
+            </property>
+            <property name="shortcut">
+             <string>6</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_26">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_31">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>反正弦函数arcsin</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 10pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>arcsin</string>
+            </property>
+            <property name="shortcut">
+             <string>Shift+S</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_30">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_35">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>反正切函数arctan</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 10pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>arctan</string>
+            </property>
+            <property name="shortcut">
+             <string>Shift+T</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_14">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_15">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>-</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(18, 183, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(5, 120, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(14, 133, 255);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+            <property name="shortcut">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_13">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_16">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>÷</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 18pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(132, 225, 0);
+    color: rgb(255, 255, 255);
+	border-color: rgb(100, 168, 0);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(82, 205, 0);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>÷</string>
+            </property>
+            <property name="shortcut">
+             <string>/</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_17">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>取余</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 9pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Mod</string>
+            </property>
+            <property name="shortcut">
+             <string>M</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="5,1,5,1,5,1,5,1,5,1,5,1,5,1,5">
+          <item>
+           <widget class="QPushButton" name="pushButton_18">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>7</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>7</string>
+            </property>
+            <property name="shortcut">
+             <string>7</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_20">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_19">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>8</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>8</string>
+            </property>
+            <property name="shortcut">
+             <string>8</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_19">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_20">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>9</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>9</string>
+            </property>
+            <property name="shortcut">
+             <string>9</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_27">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_32">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>余弦函数cos</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 10pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>cos</string>
+            </property>
+            <property name="shortcut">
+             <string>C</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_31">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_36">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>自然对数 ln</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 10pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>ln</string>
+            </property>
+            <property name="shortcut">
+             <string>Shift+L</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_18">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_21">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>幂指</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(14, 183, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(5, 120, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(14, 133, 255);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>^</string>
+            </property>
+            <property name="shortcut">
+             <string>^</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_17">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_22">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>阶乘</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(132, 225, 0);
+    color: rgb(255, 255, 255);
+	border-color: rgb(100, 168, 0);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(82, 205, 0);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>!</string>
+            </property>
+            <property name="shortcut">
+             <string>!</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_23">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>奇/偶阶乘</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>!!</string>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+1</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="5,1,5,1,5,1,5,1,5,1,5,1,5,1,5">
+          <item>
+           <widget class="QPushButton" name="pushButton_24">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>小数点</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>.</string>
+            </property>
+            <property name="shortcut">
+             <string>.</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_21">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_25">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>烧零♂</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 12pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="shortcut">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_24">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_26">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>上一次的运算结果</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 9pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+	border-color: rgb(168, 168, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(210, 210, 210);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Ans</string>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+A</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_28">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_33">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>反余弦函数arccos</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 10pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>arccos</string>
+            </property>
+            <property name="shortcut">
+             <string>Shift+C</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_32">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_37">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>对数 log</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 10pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 85, 255);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 25, 168);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 50, 205);  /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>log</string>
+            </property>
+            <property name="shortcut">
+             <string>L</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_23">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_27">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>圆周率</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 157, 87);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 100, 45);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color:rgb(205, 100, 50); /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>π</string>
+            </property>
+            <property name="shortcut">
+             <string>P</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_22">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_28">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>自然数</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 157, 87);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 100, 45);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color:rgb(205, 100, 50); /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>e</string>
+            </property>
+            <property name="shortcut">
+             <string>E</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_29">
+            <property name="minimumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>计算所输入的算式</string>
+            </property>
+            <property name="whatsThis">
+             <string/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    font: 700 14pt &quot;Microsoft YaHei UI&quot;;
+    background-color: rgb(255, 26, 106);
+    color: rgb(255, 255, 255);
+	border-color: rgb(168, 5, 50);
+	border-width: 1px;
+    border-style: solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgb(205, 15, 80); /* 调深的颜色 */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="shortcut">
+             <string>Return</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAdvanced">
+    <property name="title">
+     <string>Mode</string>
+    </property>
+    <addaction name="actionScientific"/>
+    <addaction name="actionComplex"/>
+    <addaction name="separator"/>
+    <addaction name="actionPractice"/>
+   </widget>
+   <widget class="QMenu" name="menuHistory">
+    <property name="title">
+     <string>History</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionCurrent_History"/>
+    <addaction name="actionAll_History"/>
+   </widget>
+   <widget class="QMenu" name="menuStyle">
+    <property name="title">
+     <string>Style</string>
+    </property>
+    <addaction name="actionLight"/>
+    <addaction name="actionDark"/>
+   </widget>
+   <widget class="QMenu" name="menuHekp">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actionContact_us"/>
+   </widget>
+   <addaction name="menuAdvanced"/>
+   <addaction name="menuStyle"/>
+   <addaction name="menuHistory"/>
+   <addaction name="menuHekp"/>
+  </widget>
+  <action name="actionScientific">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/sci.png</normaloff>:/rcs/sci.png</iconset>
+   </property>
+   <property name="text">
+    <string>Scientific</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+  </action>
+  <action name="actionComplex">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/complex.png</normaloff>:/rcs/complex.png</iconset>
+   </property>
+   <property name="text">
+    <string>Complex</string>
+   </property>
+  </action>
+  <action name="actionPractice">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/practice.png</normaloff>:/rcs/practice.png</iconset>
+   </property>
+   <property name="text">
+    <string>Practice</string>
+   </property>
+  </action>
+  <action name="actionCurrent_History">
+   <property name="text">
+    <string>Current History</string>
+   </property>
+   <property name="shortcut">
+    <string>H</string>
+   </property>
+  </action>
+  <action name="actionAll_History">
+   <property name="text">
+    <string>All History</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+H</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionContact_us">
+   <property name="text">
+    <string>Contact us</string>
+   </property>
+  </action>
+  <action name="actionLight">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Light</string>
+   </property>
+  </action>
+  <action name="actionDark">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dark</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
