@@ -1,7 +1,7 @@
 # CCaculator V1.0 Instruction
 
 <div style="display: flex; justify-content: space-between; padding: 0 30%;">
-  <a href="./ReadMe.md">中文指南</a>
+  <a href="./README.md">中文指南</a>
   <a href="./ReadMe_EN.md">English Instruction</a>
 </div>
 
