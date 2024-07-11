@@ -94,6 +94,16 @@ build CMakeFiles\CCalculator.dir\historyview.cpp.obj: CXX_COMPILER__CCalculator_
   TARGET_COMPILE_PDB = CMakeFiles\CCalculator.dir\
   TARGET_PDB = CCalculator.pdb
 
+build CMakeFiles\CCalculator.dir\logoConfig.rc.res: RC_COMPILER__CCalculator_unscanned_Release P$:\QT_Templates\Calculators\CCalculator\logoConfig.rc || cmake_object_order_depends_target_CCalculator
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\CCalculator.dir\logoConfig.rc.res.d
+  FLAGS = -DWIN32
+  INCLUDES = -I P:\QT_Templates\Calculators\build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Release\CCalculator_autogen\include -I P:\Qt\6.6.1\msvc2019_64\include\QtCore -I P:\Qt\6.6.1\msvc2019_64\include -I P:\Qt\6.6.1\msvc2019_64\mkspecs\win32-msvc -I P:\Qt\6.6.1\msvc2019_64\include\QtWidgets -I P:\Qt\6.6.1\msvc2019_64\include\QtGui -I P:\Qt\6.6.1\msvc2019_64\include\QtSql
+  OBJECT_DIR = CMakeFiles\CCalculator.dir
+  OBJECT_FILE_DIR = CMakeFiles\CCalculator.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CCalculator.dir\
+  TARGET_PDB = CCalculator.pdb
+
 build CMakeFiles\CCalculator.dir\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp.obj: CXX_COMPILER__CCalculator_unscanned_Release P$:\QT_Templates\Calculators\build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Release\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp || cmake_object_order_depends_target_CCalculator
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG -std:c++17 -Zc:__cplusplus -permissive- -utf-8
@@ -111,7 +121,7 @@ build CMakeFiles\CCalculator.dir\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp
 #############################################
 # Link the executable CCalculator.exe
 
-build CCalculator.exe: CXX_EXECUTABLE_LINKER__CCalculator_Release CMakeFiles\CCalculator.dir\CCalculator_autogen\mocs_compilation.cpp.obj CMakeFiles\CCalculator.dir\main.cpp.obj CMakeFiles\CCalculator.dir\mainwindow.cpp.obj CMakeFiles\CCalculator.dir\utils.cpp.obj CMakeFiles\CCalculator.dir\historyview.cpp.obj CMakeFiles\CCalculator.dir\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp.obj | P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Widgets.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Sql.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Gui.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Core.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6EntryPoint.lib || CCalculator_autogen CCalculator_autogen_timestamp_deps
+build CCalculator.exe: CXX_EXECUTABLE_LINKER__CCalculator_Release CMakeFiles\CCalculator.dir\CCalculator_autogen\mocs_compilation.cpp.obj CMakeFiles\CCalculator.dir\main.cpp.obj CMakeFiles\CCalculator.dir\mainwindow.cpp.obj CMakeFiles\CCalculator.dir\utils.cpp.obj CMakeFiles\CCalculator.dir\historyview.cpp.obj CMakeFiles\CCalculator.dir\logoConfig.rc.res CMakeFiles\CCalculator.dir\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp.obj | P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Widgets.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Sql.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Gui.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Core.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6EntryPoint.lib || CCalculator_autogen CCalculator_autogen_timestamp_deps
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG
   LINK_FLAGS = /machine:x64 /INCREMENTAL:NO /subsystem:windows
   LINK_LIBRARIES = P:\Qt\6.6.1\msvc2019_64\lib\Qt6Widgets.lib  P:\Qt\6.6.1\msvc2019_64\lib\Qt6Sql.lib  P:\Qt\6.6.1\msvc2019_64\lib\Qt6Gui.lib  d3d11.lib  dxgi.lib  dxguid.lib  d3d12.lib  P:\Qt\6.6.1\msvc2019_64\lib\Qt6Core.lib  mpr.lib  userenv.lib  P:\Qt\6.6.1\msvc2019_64\lib\Qt6EntryPoint.lib  shell32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
@@ -212,7 +222,7 @@ build CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp | ${cmake_ninja_workdir}CC
 #############################################
 # Phony custom command for CMakeFiles\CCalculator_autogen_timestamp_deps
 
-build CMakeFiles\CCalculator_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles\CCalculator_autogen_timestamp_deps: phony P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Core.lib P$:\Qt\6.6.1\msvc2019_64\.\bin\moc.exe P$:\Qt\6.6.1\msvc2019_64\.\bin\uic.exe P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Sql.lib
+build CMakeFiles\CCalculator_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles\CCalculator_autogen_timestamp_deps: phony P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Sql.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Core.lib P$:\Qt\6.6.1\msvc2019_64\.\bin\moc.exe P$:\Qt\6.6.1\msvc2019_64\.\bin\uic.exe
 
 
 #############################################

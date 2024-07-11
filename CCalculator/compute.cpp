@@ -394,55 +394,25 @@ double compute(string formula, vector<double> &num_vec, bool rad)
     if (ops.empty()) {
         return nums.top();
     }
-
-    // 开始计算
+    
+    // 优先计算所有乘除运算进行化简
+    // 清空非特殊操作符和数字数组
+	nos_num = {};
+	nos_ops = {}; 
+    // 临时操作栈 & 临时数字数栈 
+    stack<bool> tmp_ops;
+    stack<double> tmp_nums;
+    
     while (!ops.empty()) {
-        // 获取当前操作符
-        char op = ops.top();
-        // 临时操作栈 & 临时数字栈
-        stack<char> tmp_ops;
-        stack<double> tmp_nums;
-
-        // 遍历
-        // 若当前为一级操作符+, - 或 MOD则直接加入结果 因为所有括号已去除
-        if (op == '+' || op == '-' || op == 'M') {
-            if (nums.empty()) {
-                throw "非法表达式！";
-            }
-            if (op != 'M') {
-                res += nums.top()*(op == '+' ? 1 : -1);
-                nums.pop();
-                ops.pop();
-            }
-            else {
-                double num1 = nums.top();
-                nums.pop();
-                ops.pop();
-                if (nums.empty()) {
-                    throw "非法表达式！";
-                }
-                if (ops.empty() || ops.top() == '+') {
-                    res += fmod(nums.top(), num1);
-                }
-                else {
-                    res -= fmod(nums.top(), num1);
-                }
-                nums.pop();
-                // 弹出前面的加减符号
-                if (!ops.empty()) {
-                    ops.pop();
-                }
-            }
-        }
-        // 高级操作符则入临时栈最后依次操作
-        else {
-            double tmp_res = 0;
+        // 遇到乘除就进行特殊处理
+		if (ops.top() == '*' || ops.top() == '/') {
+			double tmp_res = 1;
             // 先将连续高级运算部分反向入栈恢复正序
-            while (!ops.empty() && ops.top() != '+' && ops.top() != '-') {
+            while (!ops.empty() && (ops.top() == '*' || ops.top() == '/')) {
                 if (nums.empty()) {
                     throw "非法表达式！";
                 }
-                tmp_ops.push(ops.top());
+                tmp_ops.push(ops.top()=='*');
                 ops.pop();
                 tmp_nums.push(nums.top());
                 nums.pop();
@@ -450,22 +420,12 @@ double compute(string formula, vector<double> &num_vec, bool rad)
             if (nums.empty()) {
                 throw "非法表达式！";
             }
-            // 如果高级表达式左边没有操作符或是+则*1后加入结果
-            if (ops.empty() || ops.top() == '+') {
-                tmp_res = nums.top()*1;
-                nums.pop();
-                if (!ops.empty()) {
-                    ops.pop();
-                }
-            }
-            else {
-                tmp_res = nums.top()*(-1);
-                nums.pop();
-                ops.pop();
-            }
-            // 随后依次进行高级操作
+            // 将本次连续乘除最左侧的数据作为乘除运算的开端 
+			tmp_res = nums.top();
+            nums.pop();
+            // 随后依次进行乘除操作
             while (!tmp_ops.empty()) {
-                if (tmp_ops.top() == '*') {
+                if (tmp_ops.top()) {
                     tmp_res *= tmp_nums.top();
                 }
                 else {
@@ -479,8 +439,71 @@ double compute(string formula, vector<double> &num_vec, bool rad)
                 tmp_ops.pop();
                 tmp_nums.pop();
             }
-            res += tmp_res;
+            // 将运算结果入原数字栈 
+            nums.push(tmp_res);
+		}
+		// 否则直接入非特殊栈
+		else {
+			if (!nums.empty()) {
+                nos_num.push_back(nums.top());
+                nums.pop();
+            }
+            nos_ops.push_back(ops.top());
+            ops.pop();
+		}
+    }
+
+    // 将处理后的数字和操作符入栈
+    if (!nos_num.empty()) {
+        for (int i = nos_num.size()-1; i >= 0; i--) {
+            nums.push(nos_num[i]);
         }
+    }
+    if (!nos_ops.empty()) {
+        for (int i = nos_ops.size()-1; i >= 0; i--) {
+            ops.push(nos_ops[i]);
+        }
+    }
+    
+    // 数据检查
+    // stack_display(nums);
+    // 操作符栈检查
+    // stack_display(ops);
+	
+    // 开始计算最简计算式 
+    while (!ops.empty()) {
+        // 获取当前操作符
+        char op = ops.top();
+
+        // 遍历进行一级最简运算
+		if (nums.empty()) {
+            throw "非法表达式！";
+        }
+        if (op != 'M') {
+            res += nums.top()*(op == '+' ? 1 : -1);
+            nums.pop();
+            ops.pop();
+        }
+        else {
+            double num1 = nums.top();
+            nums.pop();
+            ops.pop();
+            if (nums.empty()) {
+                throw "非法表达式！";
+            }
+            if (ops.empty() || ops.top() == '+') {
+                res += fmod(nums.top(), num1);
+            }
+            else {
+                res -= fmod(nums.top(), num1);
+            }
+            nums.pop();
+            // 弹出前面的加减符号
+            if (!ops.empty()) {
+                ops.pop();
+            }
+        } 
+        
     }
     // 如果最左边有残余数字直接加入结果
     if (!nums.empty()) {
@@ -581,7 +604,7 @@ string beautiful_double_string(string s) {
 }
 
 int main()
-{
+{	
     string formula;
     string processed_formula;
     while (1) {

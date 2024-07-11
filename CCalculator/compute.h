@@ -19,7 +19,6 @@ void stack_display(stack<T>& s) {
     for (int i = tmp.size()-1; i >= 0; i--) {
         s.push(tmp[i]);
     }
-
 }
 
 bool is_num(char c);
