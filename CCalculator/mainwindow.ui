@@ -49,8 +49,17 @@
         <property name="spacing">
          <number>0</number>
         </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
         <item>
          <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -65,7 +74,7 @@
     border-width: 1px;
     border-style: solid;
     border-color: black;
-    border-bottom: none;
+	border-bottom-width: -1px;
     padding: 5px;
 	font: 16pt &quot;Microsoft YaHei UI&quot;;
 }</string>
@@ -80,6 +89,12 @@
         </item>
         <item>
          <widget class="QLabel" name="label_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -94,7 +109,7 @@
     border-width: 1px;
     border-style: solid;
     border-color: black;
-    border-top: none;
+	border-top-width: -1px;
     padding: 5px;
 	font: 16pt &quot;Microsoft YaHei UI&quot;;
 }</string>
@@ -2471,6 +2486,7 @@ QPushButton:hover {
     <property name="title">
      <string>About</string>
     </property>
+    <addaction name="actionAbout"/>
     <addaction name="actionHelp"/>
     <addaction name="separator"/>
     <addaction name="actionContact_us"/>
@@ -2556,6 +2572,11 @@ QPushButton:hover {
    </property>
    <property name="text">
     <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

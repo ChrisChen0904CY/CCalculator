@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "utils.h"
+#include "qutils.h"
+
+// 样式头文件
+#include "styles.h"
 
 // 数据库
 QSqlDatabase db;
@@ -12,6 +16,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // 将软件主窗口标题后缀加上版本号
+    this->setWindowTitle(this->windowTitle()+" v"+this->current_version);
+    // 检查初始化文件
+    ini_check();
     // 载入所有按钮到容器中
     buttons_loadin();
     sci_spacers_loadin();
@@ -32,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent)
     Open_DB();
     // 获取当前时间戳
     open_time = QString::fromStdString(getCurrentTimestamp());
+    // 设置上一次使用的配色方案
+    style_initialize();
 }
 
 MainWindow::~MainWindow()
@@ -104,6 +114,50 @@ void MainWindow::buttons_loadin()
     this->buttons.append(this->ui->pushButton_35);
     this->buttons.append(this->ui->pushButton_36);
     this->buttons.append(this->ui->pushButton_37);
+    // 分类装载
+    // 数字/小数点/Answer
+    this->normal_buts.append(this->ui->pushButton_6);
+    this->normal_buts.append(this->ui->pushButton_7);
+    this->normal_buts.append(this->ui->pushButton_8);
+    this->normal_buts.append(this->ui->pushButton_12);
+    this->normal_buts.append(this->ui->pushButton_13);
+    this->normal_buts.append(this->ui->pushButton_14);
+    this->normal_buts.append(this->ui->pushButton_18);
+    this->normal_buts.append(this->ui->pushButton_19);
+    this->normal_buts.append(this->ui->pushButton_20);
+    this->normal_buts.append(this->ui->pushButton_24);
+    this->normal_buts.append(this->ui->pushButton_25);
+    this->normal_buts.append(this->ui->pushButton_26);
+    // 第一列按钮
+    this->col1_buts.append(this->ui->pushButton_9);
+    this->col1_buts.append(this->ui->pushButton_15);
+    this->col1_buts.append(this->ui->pushButton_21);
+    // 第二列按钮
+    this->col2_buts.append(this->ui->pushButton_10);
+    this->col2_buts.append(this->ui->pushButton_16);
+    this->col2_buts.append(this->ui->pushButton_22);
+    // 第三列按钮
+    this->col3_buts.append(this->ui->pushButton_11);
+    this->col3_buts.append(this->ui->pushButton_17);
+    this->col3_buts.append(this->ui->pushButton_23);
+    // 括号按钮
+    this->bracket_buts.append(this->ui->pushButton_2);
+    this->bracket_buts.append(this->ui->pushButton_3);
+    // 退格和清除按钮
+    this->clear_buts.append(this->ui->pushButton_4);
+    this->clear_buts.append(this->ui->pushButton_5);
+    // 特殊数字按钮
+    this->special_buts.append(this->ui->pushButton_27);
+    this->special_buts.append(this->ui->pushButton_28);
+    // 函数按钮
+    this->function_buts.append(this->ui->pushButton_30);
+    this->function_buts.append(this->ui->pushButton_31);
+    this->function_buts.append(this->ui->pushButton_32);
+    this->function_buts.append(this->ui->pushButton_33);
+    this->function_buts.append(this->ui->pushButton_34);
+    this->function_buts.append(this->ui->pushButton_35);
+    this->function_buts.append(this->ui->pushButton_36);
+    this->function_buts.append(this->ui->pushButton_37);
 }
 
 // 科学计算模式下专有的弹簧载入对应容器
@@ -879,8 +933,18 @@ void MainWindow::check_clicked()
 // 结果调用按键响应槽函数
 void MainWindow::ans_clicked()
 {
-    this->formula_text += QString("%1").arg(this->result);
-    this->formula_cal_text += QString("%1").arg(this->result);
+    // 将结果解析为 QString
+    QString qres = QString("%1").arg(this->result);
+    // 处理科学计数法
+    int e_ind = qres.indexOf('e');
+    if (e_ind != -1) {
+        this->formula_text += qres.mid(0, e_ind) + "×10^(" + qres.mid(e_ind+1, qres.size()-e_ind-1) +")";
+        this->formula_cal_text += qres.mid(0, e_ind) + "*10^(" + qres.mid(e_ind+1, qres.size()-e_ind-1) +")";
+    }
+    else {
+        this->formula_text += qres;
+        this->formula_cal_text += qres;
+    }
     this->formula_display();
 }
 
@@ -958,16 +1022,14 @@ void MainWindow::mode_change() {
 /* 样式设置 */
 // 浅色背景
 void MainWindow::light_style_set() {
-    this->setStyleSheet("QMainWindow {"\
-                        "background-color: rgb(255, 255, 255);"\
-                        "};");
+    this->style_diy_set(styleMap["Light"]);
+    change_ini_style("Light");
 }
 
 // 深色背景
 void MainWindow::dark_style_set() {
-    this->setStyleSheet("QMainWindow {"\
-                        "background-color: rgb(0, 0, 0);"\
-                        "};");
+    this->style_diy_set(styleMap["Dark"]);
+    change_ini_style("Dark");
 }
 
 /* 历史记录查看 */
@@ -1030,11 +1092,14 @@ void MainWindow::Open_DB()
                              db.lastError().text());
     }
     // 当表格不存在时建立历史记录表
-    QString table_create = "CREATE TABLE IF NOT EXISTS Histories ("\
-        "input_formula TEXT,"\
-        "cal_result TEXT,"\
-        "timestamp DATETIME"\
-        ");";
+    QString table_create = "CREATE TABLE IF NOT EXISTS Histories (";
+
+    for(auto i = 0; i < this->dataBaseCols.size(); i++) {
+        QPair<QString, QString> col = this->dataBaseCols.at(i);
+        table_create += col.first + " " + col.second + ",";
+    }
+
+    table_create += ");";
     QSqlQuery table_query;
     table_query.exec(table_create);
 }
@@ -1044,6 +1109,7 @@ void MainWindow::Close_DB(){
     db.close();
 }
 
+// 查询所有数据
 QVector<QVector<QString>> MainWindow::QueryAllData(void)
 {
     QString select_all_sql = "select * from Histories;";
@@ -1054,9 +1120,10 @@ QVector<QVector<QString>> MainWindow::QueryAllData(void)
     while(sql_query.next())
     {
         QVector<QString> tmp;
-        tmp.append(sql_query.value("input_formula").toString());
-        tmp.append(sql_query.value("cal_result").toString());
-        tmp.append(sql_query.value("timestamp").toString());
+        for(auto i = 0; i < this->dataBaseCols.size(); i++) {
+            QPair<QString, QString> col = this->dataBaseCols.at(i);
+            tmp.append(sql_query.value(col.first).toString());
+        }
         result.append(tmp);
     }
     return result;
@@ -1077,9 +1144,10 @@ QVector<QVector<QString>> MainWindow::QuerySpecificData(QString col_name, QStrin
     while(sql_query.next())
     {
         QVector<QString> tmp;
-        tmp.append(sql_query.value("input_formula").toString());
-        tmp.append(sql_query.value("cal_result").toString());
-        tmp.append(sql_query.value("timestamp").toString());
+        for(auto i = 0; i < this->dataBaseCols.size(); i++) {
+            QPair<QString, QString> col = this->dataBaseCols.at(i);
+            tmp.append(sql_query.value(col.first).toString());
+        }
         result.append(tmp);
     }
     return result;
@@ -1092,8 +1160,20 @@ void MainWindow::write2database() {
 
     // 准备 SQL 查询
     QSqlQuery query;
-    query.prepare("INSERT INTO Histories (input_formula, cal_result, timestamp) "
-                  "VALUES (:input_formula, :cal_result, :timestamp)");
+    QString querystring = "INSERT INTO Histories (";
+    for(auto i = 0; i < this->dataBaseCols.size(); i++) {
+        QPair<QString, QString> col = this->dataBaseCols.at(i);
+        querystring += col.first + ",";
+    }
+    querystring += ") VALUES (:";
+    for(auto i = 0; i < this->dataBaseCols.size(); i++) {
+        QPair<QString, QString> col = this->dataBaseCols.at(i);
+        querystring += col.first + ",";
+    }
+    querystring += ")";
+
+    // 准备好插值语句
+    query.prepare(querystring);
 
     // 绑定值到查询中
     query.bindValue(":input_formula", this->formula_text);
@@ -1135,4 +1215,86 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
 
     // 调用基类的事件处理函数
     QWidget::keyPressEvent(event);
+}
+
+// 通过传入的字符串数组批量设置各组控件的样式
+void MainWindow::style_diy_set(QVector<QString> styles) {
+    // 窗口背景颜色设置
+    this->setStyleSheet(styles[0]);
+    // 数字/小数点/Answer 按钮组
+    for (auto but:normal_buts) {
+        updateStyleSheet(but, styles[1]);
+    }
+    // 第一列运算符 按钮组
+    for (auto but:col1_buts) {
+        updateStyleSheet(but, styles[2]);
+    }
+    // 第二列运算符 按钮组
+    for (auto but:col2_buts) {
+        updateStyleSheet(but, styles[3]);
+    }
+    // 第三列运算符 按钮组
+    for (auto but:col3_buts) {
+        updateStyleSheet(but, styles[4]);
+    }
+    // 括号 按钮组
+    for (auto but:bracket_buts) {
+        updateStyleSheet(but, styles[5]);
+    }
+    // 退格和清空 按钮组
+    for (auto but:clear_buts) {
+        updateStyleSheet(but, styles[6]);
+    }
+    // 特殊数字 按钮组
+    for (auto but:special_buts) {
+        updateStyleSheet(but, styles[7]);
+    }
+    // 函数 按钮组
+    for (auto but:function_buts) {
+        updateStyleSheet(but, styles[8]);
+    }
+    // 错误自检按钮
+    updateStyleSheet(this->ui->pushButton, styles[9]);
+    // 等于按钮
+    updateStyleSheet(this->ui->pushButton_29, styles[10]);
+    // 算式输入框
+    updateStyleSheet(this->ui->label, styles[11]);
+    // 结果展示框
+    updateStyleSheet(this->ui->label_2, styles[12]);
+}
+
+// 检查初始化配置文件
+void MainWindow::ini_check() {
+    QFileInfo int_file(this->iniFile);
+    // 不存在就新建一个默认的ini文件
+    if (!int_file.isFile()) {
+        change_ini_style("Light");
+    }
+}
+
+// 修改当前初始化文件的配色方案值
+void MainWindow::change_ini_style(QString style) {
+    // 打开文件并指定为ini格式
+    QSettings*  m_IniFile = new QSettings(this->iniFile, QSettings::IniFormat);
+    //通过setValue函数将键值对放在相对于的节下面
+    m_IniFile->setValue( "PreSettings/style",  style);
+    delete m_IniFile;
+}
+
+// 初始化设置上一次设置的颜色方案
+void MainWindow::style_initialize() {
+    // 打开文件并指定为ini格式
+    QSettings*  m_IniFile = new QSettings(this->iniFile, QSettings::IniFormat);
+    // 通过Value函数将节下相对应的键值读取出来
+    QString pre_style = "Light";
+
+    try {
+        pre_style = m_IniFile->value("PreSettings/style").toString();
+    }
+    catch(const char* msg) {
+        qDebug() << msg;
+        change_ini_style("Light");
+    }
+
+    this->style_diy_set(styleMap[pre_style]);
 }

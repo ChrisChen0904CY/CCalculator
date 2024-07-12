@@ -38,6 +38,7 @@ public:
     QAction *actionContact_us;
     QAction *actionLight;
     QAction *actionDark;
+    QAction *actionAbout;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout;
@@ -183,6 +184,8 @@ public:
         actionDark->setObjectName("actionDark");
         actionDark->setCheckable(false);
         actionDark->setEnabled(true);
+        actionAbout = new QAction(MainWindow);
+        actionAbout->setObjectName("actionAbout");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayout_2 = new QHBoxLayout(centralwidget);
@@ -192,8 +195,14 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(0);
         verticalLayout_3->setObjectName("verticalLayout_3");
+        verticalLayout_3->setSizeConstraint(QLayout::SetDefaultConstraint);
         label = new QLabel(centralwidget);
         label->setObjectName("label");
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy1);
         label->setMinimumSize(QSize(0, 40));
         label->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "    background-color: white;\n"
@@ -202,7 +211,7 @@ public:
 "    border-width: 1px;\n"
 "    border-style: solid;\n"
 "    border-color: black;\n"
-"    border-bottom: none;\n"
+"	border-bottom-width: -1px;\n"
 "    padding: 5px;\n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "}"));
@@ -212,6 +221,8 @@ public:
 
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
+        sizePolicy1.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy1);
         label_2->setMinimumSize(QSize(0, 40));
         label_2->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "    background-color: white;\n"
@@ -220,7 +231,7 @@ public:
 "    border-width: 1px;\n"
 "    border-style: solid;\n"
 "    border-color: black;\n"
-"    border-top: none;\n"
+"	border-top-width: -1px;\n"
 "    padding: 5px;\n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "}"));
@@ -432,11 +443,11 @@ public:
 
         pushButton_7 = new QPushButton(centralwidget);
         pushButton_7->setObjectName("pushButton_7");
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(40);
-        sizePolicy1.setVerticalStretch(40);
-        sizePolicy1.setHeightForWidth(pushButton_7->sizePolicy().hasHeightForWidth());
-        pushButton_7->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(40);
+        sizePolicy2.setVerticalStretch(40);
+        sizePolicy2.setHeightForWidth(pushButton_7->sizePolicy().hasHeightForWidth());
+        pushButton_7->setSizePolicy(sizePolicy2);
         pushButton_7->setMinimumSize(QSize(60, 60));
         pushButton_7->setMaximumSize(QSize(60, 60));
         pushButton_7->setCursor(QCursor(Qt::PointingHandCursor));
@@ -1371,6 +1382,7 @@ public:
         menuHistory->addAction(actionAll_History);
         menuStyle->addAction(actionLight);
         menuStyle->addAction(actionDark);
+        menuHekp->addAction(actionAbout);
         menuHekp->addAction(actionHelp);
         menuHekp->addSeparator();
         menuHekp->addAction(actionContact_us);
@@ -1401,6 +1413,7 @@ public:
         actionContact_us->setText(QCoreApplication::translate("MainWindow", "Contact us", nullptr));
         actionLight->setText(QCoreApplication::translate("MainWindow", "Light", nullptr));
         actionDark->setText(QCoreApplication::translate("MainWindow", "Dark", nullptr));
+        actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
         label->setText(QString());
         label_2->setText(QString());
 #if QT_CONFIG(tooltip)

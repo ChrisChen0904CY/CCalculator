@@ -384,6 +384,18 @@
 			null
 		],
 		[
+			"P:/QT_Templates/Calculators/CCalculator/qutils.h",
+			"MU",
+			"EWIEGA46WW/moc_qutils.cpp",
+			null
+		],
+		[
+			"P:/QT_Templates/Calculators/CCalculator/styles.h",
+			"MU",
+			"EWIEGA46WW/moc_styles.cpp",
+			null
+		],
+		[
 			"P:/QT_Templates/Calculators/CCalculator/utils.h",
 			"MU",
 			"EWIEGA46WW/moc_utils.cpp",
@@ -449,6 +461,7 @@
 		[ "P:/QT_Templates/Calculators/CCalculator/historyview.cpp", "MU", null ],
 		[ "P:/QT_Templates/Calculators/CCalculator/main.cpp", "MU", null ],
 		[ "P:/QT_Templates/Calculators/CCalculator/mainwindow.cpp", "MU", null ],
+		[ "P:/QT_Templates/Calculators/CCalculator/qutils.cpp", "MU", null ],
 		[ "P:/QT_Templates/Calculators/CCalculator/utils.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

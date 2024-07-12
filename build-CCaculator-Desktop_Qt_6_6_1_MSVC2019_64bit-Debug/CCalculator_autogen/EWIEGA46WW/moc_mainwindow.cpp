@@ -83,12 +83,16 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "sci_mode_style_set",
     "light_style_set",
     "dark_style_set",
+    "ini_check",
+    "change_ini_style",
+    "style",
+    "style_initialize",
     "all_history_display",
     "cur_history_display"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[92];
+    uint offsetsAndSizes[100];
     char stringdata0[11];
     char stringdata1[13];
     char stringdata2[1];
@@ -133,8 +137,12 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata41[19];
     char stringdata42[16];
     char stringdata43[15];
-    char stringdata44[20];
-    char stringdata45[20];
+    char stringdata44[10];
+    char stringdata45[17];
+    char stringdata46[6];
+    char stringdata47[17];
+    char stringdata48[20];
+    char stringdata49[20];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -184,8 +192,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(538, 18),  // "sci_mode_style_set"
         QT_MOC_LITERAL(557, 15),  // "light_style_set"
         QT_MOC_LITERAL(573, 14),  // "dark_style_set"
-        QT_MOC_LITERAL(588, 19),  // "all_history_display"
-        QT_MOC_LITERAL(608, 19)   // "cur_history_display"
+        QT_MOC_LITERAL(588, 9),  // "ini_check"
+        QT_MOC_LITERAL(598, 16),  // "change_ini_style"
+        QT_MOC_LITERAL(615, 5),  // "style"
+        QT_MOC_LITERAL(621, 16),  // "style_initialize"
+        QT_MOC_LITERAL(638, 19),  // "all_history_display"
+        QT_MOC_LITERAL(658, 19)   // "cur_history_display"
     },
     "MainWindow",
     "num0_clicked",
@@ -231,6 +243,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "sci_mode_style_set",
     "light_style_set",
     "dark_style_set",
+    "ini_check",
+    "change_ini_style",
+    "style",
+    "style_initialize",
     "all_history_display",
     "cur_history_display"
 };
@@ -244,7 +260,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      44,   14, // methods
+      47,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -252,50 +268,53 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  278,    2, 0x0a,    1 /* Public */,
-       3,    0,  279,    2, 0x0a,    2 /* Public */,
-       4,    0,  280,    2, 0x0a,    3 /* Public */,
-       5,    0,  281,    2, 0x0a,    4 /* Public */,
-       6,    0,  282,    2, 0x0a,    5 /* Public */,
-       7,    0,  283,    2, 0x0a,    6 /* Public */,
-       8,    0,  284,    2, 0x0a,    7 /* Public */,
-       9,    0,  285,    2, 0x0a,    8 /* Public */,
-      10,    0,  286,    2, 0x0a,    9 /* Public */,
-      11,    0,  287,    2, 0x0a,   10 /* Public */,
-      12,    0,  288,    2, 0x0a,   11 /* Public */,
-      13,    0,  289,    2, 0x0a,   12 /* Public */,
-      14,    0,  290,    2, 0x0a,   13 /* Public */,
-      15,    0,  291,    2, 0x0a,   14 /* Public */,
-      16,    0,  292,    2, 0x0a,   15 /* Public */,
-      17,    0,  293,    2, 0x0a,   16 /* Public */,
-      18,    0,  294,    2, 0x0a,   17 /* Public */,
-      19,    0,  295,    2, 0x0a,   18 /* Public */,
-      20,    0,  296,    2, 0x0a,   19 /* Public */,
-      21,    0,  297,    2, 0x0a,   20 /* Public */,
-      22,    0,  298,    2, 0x0a,   21 /* Public */,
-      23,    0,  299,    2, 0x0a,   22 /* Public */,
-      24,    0,  300,    2, 0x0a,   23 /* Public */,
-      25,    0,  301,    2, 0x0a,   24 /* Public */,
-      26,    0,  302,    2, 0x0a,   25 /* Public */,
-      27,    0,  303,    2, 0x0a,   26 /* Public */,
-      28,    0,  304,    2, 0x0a,   27 /* Public */,
-      29,    0,  305,    2, 0x0a,   28 /* Public */,
-      30,    0,  306,    2, 0x0a,   29 /* Public */,
-      31,    0,  307,    2, 0x0a,   30 /* Public */,
-      32,    0,  308,    2, 0x0a,   31 /* Public */,
-      33,    0,  309,    2, 0x0a,   32 /* Public */,
-      34,    0,  310,    2, 0x0a,   33 /* Public */,
-      35,    0,  311,    2, 0x0a,   34 /* Public */,
-      36,    0,  312,    2, 0x0a,   35 /* Public */,
-      37,    0,  313,    2, 0x0a,   36 /* Public */,
-      38,    0,  314,    2, 0x0a,   37 /* Public */,
-      39,    0,  315,    2, 0x0a,   38 /* Public */,
-      40,    0,  316,    2, 0x0a,   39 /* Public */,
-      41,    0,  317,    2, 0x0a,   40 /* Public */,
-      42,    0,  318,    2, 0x0a,   41 /* Public */,
-      43,    0,  319,    2, 0x0a,   42 /* Public */,
-      44,    0,  320,    2, 0x0a,   43 /* Public */,
-      45,    0,  321,    2, 0x0a,   44 /* Public */,
+       1,    0,  296,    2, 0x0a,    1 /* Public */,
+       3,    0,  297,    2, 0x0a,    2 /* Public */,
+       4,    0,  298,    2, 0x0a,    3 /* Public */,
+       5,    0,  299,    2, 0x0a,    4 /* Public */,
+       6,    0,  300,    2, 0x0a,    5 /* Public */,
+       7,    0,  301,    2, 0x0a,    6 /* Public */,
+       8,    0,  302,    2, 0x0a,    7 /* Public */,
+       9,    0,  303,    2, 0x0a,    8 /* Public */,
+      10,    0,  304,    2, 0x0a,    9 /* Public */,
+      11,    0,  305,    2, 0x0a,   10 /* Public */,
+      12,    0,  306,    2, 0x0a,   11 /* Public */,
+      13,    0,  307,    2, 0x0a,   12 /* Public */,
+      14,    0,  308,    2, 0x0a,   13 /* Public */,
+      15,    0,  309,    2, 0x0a,   14 /* Public */,
+      16,    0,  310,    2, 0x0a,   15 /* Public */,
+      17,    0,  311,    2, 0x0a,   16 /* Public */,
+      18,    0,  312,    2, 0x0a,   17 /* Public */,
+      19,    0,  313,    2, 0x0a,   18 /* Public */,
+      20,    0,  314,    2, 0x0a,   19 /* Public */,
+      21,    0,  315,    2, 0x0a,   20 /* Public */,
+      22,    0,  316,    2, 0x0a,   21 /* Public */,
+      23,    0,  317,    2, 0x0a,   22 /* Public */,
+      24,    0,  318,    2, 0x0a,   23 /* Public */,
+      25,    0,  319,    2, 0x0a,   24 /* Public */,
+      26,    0,  320,    2, 0x0a,   25 /* Public */,
+      27,    0,  321,    2, 0x0a,   26 /* Public */,
+      28,    0,  322,    2, 0x0a,   27 /* Public */,
+      29,    0,  323,    2, 0x0a,   28 /* Public */,
+      30,    0,  324,    2, 0x0a,   29 /* Public */,
+      31,    0,  325,    2, 0x0a,   30 /* Public */,
+      32,    0,  326,    2, 0x0a,   31 /* Public */,
+      33,    0,  327,    2, 0x0a,   32 /* Public */,
+      34,    0,  328,    2, 0x0a,   33 /* Public */,
+      35,    0,  329,    2, 0x0a,   34 /* Public */,
+      36,    0,  330,    2, 0x0a,   35 /* Public */,
+      37,    0,  331,    2, 0x0a,   36 /* Public */,
+      38,    0,  332,    2, 0x0a,   37 /* Public */,
+      39,    0,  333,    2, 0x0a,   38 /* Public */,
+      40,    0,  334,    2, 0x0a,   39 /* Public */,
+      41,    0,  335,    2, 0x0a,   40 /* Public */,
+      42,    0,  336,    2, 0x0a,   41 /* Public */,
+      43,    0,  337,    2, 0x0a,   42 /* Public */,
+      44,    0,  338,    2, 0x0a,   43 /* Public */,
+      45,    1,  339,    2, 0x0a,   44 /* Public */,
+      47,    0,  342,    2, 0x0a,   46 /* Public */,
+      48,    0,  343,    2, 0x0a,   47 /* Public */,
+      49,    0,  344,    2, 0x0a,   48 /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -339,6 +358,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   46,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -439,6 +461,13 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'dark_style_set'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'ini_check'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'change_ini_style'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'style_initialize'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'all_history_display'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'cur_history_display'
@@ -495,12 +524,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 39: _t->sci_mode_style_set(); break;
         case 40: _t->light_style_set(); break;
         case 41: _t->dark_style_set(); break;
-        case 42: _t->all_history_display(); break;
-        case 43: _t->cur_history_display(); break;
+        case 42: _t->ini_check(); break;
+        case 43: _t->change_ini_style((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 44: _t->style_initialize(); break;
+        case 45: _t->all_history_display(); break;
+        case 46: _t->cur_history_display(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *MainWindow::metaObject() const
@@ -522,13 +553,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 44)
+        if (_id < 47)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 44;
+        _id -= 47;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 44)
+        if (_id < 47)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 44;
+        _id -= 47;
     }
     return _id;
 }

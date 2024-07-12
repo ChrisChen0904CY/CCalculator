@@ -104,6 +104,25 @@ build CMakeFiles\CCalculator.dir\logoConfig.rc.res: RC_COMPILER__CCalculator_uns
   TARGET_COMPILE_PDB = CMakeFiles\CCalculator.dir\
   TARGET_PDB = CCalculator.pdb
 
+build CMakeFiles\CCalculator.dir\versionInfo.rc.res: RC_COMPILER__CCalculator_unscanned_Debug P$:\QT_Templates\Calculators\CCalculator\versionInfo.rc || cmake_object_order_depends_target_CCalculator
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\CCalculator.dir\versionInfo.rc.res.d
+  FLAGS = -DWIN32 -D_DEBUG
+  INCLUDES = -I P:\QT_Templates\Calculators\build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug\CCalculator_autogen\include -I P:\Qt\6.6.1\msvc2019_64\include\QtCore -I P:\Qt\6.6.1\msvc2019_64\include -I P:\Qt\6.6.1\msvc2019_64\mkspecs\win32-msvc -I P:\Qt\6.6.1\msvc2019_64\include\QtWidgets -I P:\Qt\6.6.1\msvc2019_64\include\QtGui -I P:\Qt\6.6.1\msvc2019_64\include\QtSql
+  OBJECT_DIR = CMakeFiles\CCalculator.dir
+  OBJECT_FILE_DIR = CMakeFiles\CCalculator.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CCalculator.dir\
+  TARGET_PDB = CCalculator.pdb
+
+build CMakeFiles\CCalculator.dir\qutils.cpp.obj: CXX_COMPILER__CCalculator_unscanned_Debug P$:\QT_Templates\Calculators\CCalculator\qutils.cpp || cmake_object_order_depends_target_CCalculator
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  FLAGS = -DQT_QML_DEBUG /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 -Zc:__cplusplus -permissive- -utf-8
+  INCLUDES = -IP:\QT_Templates\Calculators\build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug\CCalculator_autogen\include -external:IP:\Qt\6.6.1\msvc2019_64\include\QtCore -external:IP:\Qt\6.6.1\msvc2019_64\include -external:IP:\Qt\6.6.1\msvc2019_64\mkspecs\win32-msvc -external:IP:\Qt\6.6.1\msvc2019_64\include\QtWidgets -external:IP:\Qt\6.6.1\msvc2019_64\include\QtGui -external:IP:\Qt\6.6.1\msvc2019_64\include\QtSql -external:W0
+  OBJECT_DIR = CMakeFiles\CCalculator.dir
+  OBJECT_FILE_DIR = CMakeFiles\CCalculator.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CCalculator.dir\
+  TARGET_PDB = CCalculator.pdb
+
 build CMakeFiles\CCalculator.dir\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp.obj: CXX_COMPILER__CCalculator_unscanned_Debug P$:\QT_Templates\Calculators\build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp || cmake_object_order_depends_target_CCalculator
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   FLAGS = -DQT_QML_DEBUG /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 -Zc:__cplusplus -permissive- -utf-8
@@ -121,7 +140,7 @@ build CMakeFiles\CCalculator.dir\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp
 #############################################
 # Link the executable CCalculator.exe
 
-build CCalculator.exe: CXX_EXECUTABLE_LINKER__CCalculator_Debug CMakeFiles\CCalculator.dir\CCalculator_autogen\mocs_compilation.cpp.obj CMakeFiles\CCalculator.dir\main.cpp.obj CMakeFiles\CCalculator.dir\mainwindow.cpp.obj CMakeFiles\CCalculator.dir\utils.cpp.obj CMakeFiles\CCalculator.dir\historyview.cpp.obj CMakeFiles\CCalculator.dir\logoConfig.rc.res CMakeFiles\CCalculator.dir\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp.obj | P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Widgetsd.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Sqld.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Guid.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Cored.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6EntryPointd.lib || CCalculator_autogen CCalculator_autogen_timestamp_deps
+build CCalculator.exe: CXX_EXECUTABLE_LINKER__CCalculator_Debug CMakeFiles\CCalculator.dir\CCalculator_autogen\mocs_compilation.cpp.obj CMakeFiles\CCalculator.dir\main.cpp.obj CMakeFiles\CCalculator.dir\mainwindow.cpp.obj CMakeFiles\CCalculator.dir\utils.cpp.obj CMakeFiles\CCalculator.dir\historyview.cpp.obj CMakeFiles\CCalculator.dir\logoConfig.rc.res CMakeFiles\CCalculator.dir\versionInfo.rc.res CMakeFiles\CCalculator.dir\qutils.cpp.obj CMakeFiles\CCalculator.dir\CCalculator_autogen\EWIEGA46WW\qrc_resource.cpp.obj | P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Widgetsd.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Sqld.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Guid.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6Cored.lib P$:\Qt\6.6.1\msvc2019_64\lib\Qt6EntryPointd.lib || CCalculator_autogen CCalculator_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
   LINK_LIBRARIES = P:\Qt\6.6.1\msvc2019_64\lib\Qt6Widgetsd.lib  P:\Qt\6.6.1\msvc2019_64\lib\Qt6Sqld.lib  P:\Qt\6.6.1\msvc2019_64\lib\Qt6Guid.lib  d3d11.lib  dxgi.lib  dxguid.lib  d3d12.lib  P:\Qt\6.6.1\msvc2019_64\lib\Qt6Cored.lib  mpr.lib  userenv.lib  P:\Qt\6.6.1\msvc2019_64\lib\Qt6EntryPointd.lib  shell32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

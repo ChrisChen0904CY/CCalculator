@@ -28,6 +28,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         utils.cpp
         historyview.h historyview.cpp historyview.ui
         logoConfig.rc
+        versionInfo.rc
+        styles.h
+        qutils.h
+        qutils.cpp
 
 
     )

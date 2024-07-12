@@ -7,17 +7,22 @@ CCalculator_autogen/timestamp: \
   P:/QT_Templates/Calculators/CCalculator/mainwindow.cpp \
   P:/QT_Templates/Calculators/CCalculator/mainwindow.h \
   P:/QT_Templates/Calculators/CCalculator/mainwindow.ui \
+  P:/QT_Templates/Calculators/CCalculator/qutils.cpp \
+  P:/QT_Templates/Calculators/CCalculator/qutils.h \
   P:/QT_Templates/Calculators/CCalculator/resource.qrc \
+  P:/QT_Templates/Calculators/CCalculator/styles.h \
   P:/QT_Templates/Calculators/CCalculator/utils.cpp \
   P:/QT_Templates/Calculators/CCalculator/utils.h \
   .qtc/package-manager/auto-setup.cmake \
   CMakeFiles/3.27.7/CMakeCXXCompiler.cmake \
   CMakeFiles/3.27.7/CMakeRCCompiler.cmake \
   CMakeFiles/3.27.7/CMakeSystem.cmake \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/QFileInfo \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QList \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QMap \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QObject \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QRect \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/QSettings \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QSize \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QSizeF \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QString \
@@ -41,6 +46,7 @@ CCalculator_autogen/timestamp: \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qbytearrayalgorithms.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qbytearraylist.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qbytearrayview.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qcalendar.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qchar.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qcompare.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qcompare_impl.h \
@@ -56,9 +62,13 @@ CCalculator_autogen/timestamp: \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qcoreevent.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qdarwinhelpers.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qdatastream.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qdatetime.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qdebug.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qeventloop.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qexceptionhandling.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qfile.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qfiledevice.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qfileinfo.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qflags.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qfloat16.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qforeach.h \
@@ -104,6 +114,7 @@ CCalculator_autogen/timestamp: \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qscopedpointer.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qscopeguard.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qset.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qsettings.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qshareddata.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qshareddata_impl.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qsharedpointer.h \
@@ -131,6 +142,7 @@ CCalculator_autogen/timestamp: \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtdeprecationmarkers.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtenvironmentvariables.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtextstream.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtimezone.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtmetamacros.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtnoop.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtpreprocessorsupport.h \
@@ -149,6 +161,7 @@ CCalculator_autogen/timestamp: \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qversiontagging.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qxptype_traits.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QClipboard \
+  P:/Qt/6.6.1/msvc2019_64/include/QtGui/QFont \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QKeyEvent \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QScreen \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QTransform \

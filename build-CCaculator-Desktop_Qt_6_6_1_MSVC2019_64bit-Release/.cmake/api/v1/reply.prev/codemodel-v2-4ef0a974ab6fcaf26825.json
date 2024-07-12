@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-e19aa49cf6e833c1706e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "CCalculator",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "CCalculator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CCalculator-Release-0795fb29dbddbac2afd2.json",
+					"name" : "CCalculator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "CCalculator_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CCalculator_autogen-Release-c2a5f52ceaa98463c879.json",
+					"name" : "CCalculator_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "CCalculator_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CCalculator_autogen_timestamp_deps-Release-048620c3333c3ad9aa87.json",
+					"name" : "CCalculator_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Release",
+		"source" : "P:/QT_Templates/Calculators/CCalculator"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

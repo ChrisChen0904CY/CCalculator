@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QSpacerItem>
 #include <QMap>
+#include <QFont>
 
 // SQL 数据库相关包的导入
 #include <QSqlDatabase>
@@ -20,6 +21,10 @@
 // 响应键盘事件
 #include <QKeyEvent>
 #include <QClipboard>
+
+// 初始配色方案设置
+#include <QSettings>
+#include <QFileInfo>
 
 #include "historyview.h"
 
@@ -64,6 +69,8 @@ public:
                                                 QString op = "==");
     // 写入当前输入的算式和计算结果到数据库中
     void write2database();
+    // 通过传入的字符串数组批量设置各组控件的样式
+    void style_diy_set(QVector<QString> styles);
 
 public slots:
     // 数字键响应槽函数
@@ -122,10 +129,16 @@ public slots:
     void sci_mode_style_set();
 
     /* 样式设置 */
-    // 浅色背景
+    // 浅色
     void light_style_set();
-    // 深色背景
+    // 深色
     void dark_style_set();
+    // 检查初始化配置文件
+    void ini_check();
+    // 修改当前初始化文件的配色方案值
+    void change_ini_style(QString style);
+    // 初始化设置上一次设置的颜色方案
+    void style_initialize();
 
     /* 历史记录查看 */
     void all_history_display();
@@ -186,5 +199,31 @@ private:
     HistoryView* history_view = NULL;
     // 当前打开时间 --- 计算器本次打开的时间
     QString open_time;
+    // 当前软件版本
+    QString current_version = "1.2";
+
+    /* 以下是用于 UI 色板方案批量设置的控件分类容器 */
+    // 数字/小数点/上一次运算结果 按钮组
+    QVector<QPushButton*> normal_buts;
+    // 第一列计算按钮 --- +, -, ^
+    QVector<QPushButton*> col1_buts;
+    // 第二列计算按钮 --- ×, ÷, !
+    QVector<QPushButton*> col2_buts;
+    // 第三列计算按钮 --- %, MOD, !!
+    QVector<QPushButton*> col3_buts;
+    // 括号按钮
+    QVector<QPushButton*> bracket_buts;
+    // 退格/清除按钮
+    QVector<QPushButton*> clear_buts;
+    // 特殊数字按钮
+    QVector<QPushButton*> special_buts;
+    // 函数按钮
+    QVector<QPushButton*> function_buts;
+    // 数据库列名与类型
+    QVector<QPair<QString, QString>> dataBaseCols = {{"input_formula", "TEXT"},
+                                                     {"cal_result", "TEXT"},
+                                                     {"timestamp", "DATETIME"}};
+    // 初始配置文件名称
+    QString iniFile = "./iniConfig.ini";
 };
 #endif // MAINWINDOW_H
