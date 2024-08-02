@@ -8,5 +8,25 @@
         <file>rcs/left.png</file>
         <file>rcs/right.png</file>
         <file>rcs/history.png</file>
+        <file>about.html</file>
+        <file>rcs/bilibili_icon.png</file>
+        <file>rcs/csdn_icon.png</file>
+        <file>rcs/email.png</file>
+        <file>rcs/email_black.png</file>
+        <file>rcs/github_icon.png</file>
+        <file>rcs/about.png</file>
+        <file>rcs/help.png</file>
+        <file>rcs/color_setting.png</file>
+        <file>rcs/settings.png</file>
+        <file>about_Lite.html</file>
+        <file>rcs/help_1_1.png</file>
+        <file>rcs/help_1_2.png</file>
+        <file>rcs/angle_set.png</file>
+        <file>rcs/help_1_3.png</file>
+        <file>rcs/help_2_1.png</file>
+        <file>rcs/help_2_2.png</file>
+        <file>rcs/help_2_3.png</file>
+        <file>rcs/help_2_4.png</file>
+        <file>rcs/help_2_5.png</file>
     </qresource>
 </RCC>

@@ -159,6 +159,9 @@
           <property name="mouseTracking">
            <bool>true</bool>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>算式错误检验</string>
           </property>
@@ -218,6 +221,9 @@ QPushButton:hover {
           </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
            <string>左括号</string>
@@ -279,6 +285,9 @@ QPushButton:hover {
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="toolTip">
            <string>右括号</string>
           </property>
@@ -336,8 +345,14 @@ QPushButton:hover {
             <height>60</height>
            </size>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
           <property name="toolTip">
-           <string/>
+           <string>点我获得随机数</string>
           </property>
           <property name="whatsThis">
            <string/>
@@ -385,6 +400,9 @@ border-radius: 5px;</string>
           </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
            <string>退格</string>
@@ -445,6 +463,9 @@ QPushButton:hover {
           </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
            <string>清空所有输入</string>
@@ -512,6 +533,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>一个一个一个</string>
             </property>
@@ -578,6 +602,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>2</string>
             </property>
@@ -637,6 +664,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>3</string>
@@ -698,6 +728,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>正弦函数sin</string>
             </property>
@@ -757,6 +790,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>正切函数tan</string>
@@ -818,6 +854,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>+</string>
             </property>
@@ -878,6 +917,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>×</string>
             </property>
@@ -937,6 +979,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>百分号</string>
@@ -1002,6 +1047,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>4444！！！！</string>
             </property>
@@ -1062,6 +1110,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>5</string>
             </property>
@@ -1121,6 +1172,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>单走一张六</string>
@@ -1188,6 +1242,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>反正弦函数arcsin</string>
             </property>
@@ -1247,6 +1304,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>反正切函数arctan</string>
@@ -1308,6 +1368,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>-</string>
             </property>
@@ -1368,6 +1431,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>÷</string>
             </property>
@@ -1427,6 +1493,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>取余</string>
@@ -1492,6 +1561,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>7</string>
             </property>
@@ -1551,6 +1623,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>8</string>
@@ -1612,6 +1687,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>9</string>
             </property>
@@ -1671,6 +1749,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>余弦函数cos</string>
@@ -1732,6 +1813,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>自然对数 ln</string>
             </property>
@@ -1791,6 +1875,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>幂指</string>
@@ -1852,6 +1939,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>阶乘</string>
             </property>
@@ -1911,6 +2001,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>奇/偶阶乘</string>
@@ -1976,6 +2069,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>小数点</string>
             </property>
@@ -2035,6 +2131,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>烧零♂</string>
@@ -2096,6 +2195,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>上一次的运算结果</string>
             </property>
@@ -2155,6 +2257,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>反余弦函数arccos</string>
@@ -2216,6 +2321,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>对数 log</string>
             </property>
@@ -2275,6 +2383,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>圆周率</string>
@@ -2336,6 +2447,9 @@ QPushButton:hover {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="toolTip">
              <string>自然数</string>
             </property>
@@ -2395,6 +2509,9 @@ QPushButton:hover {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
             <property name="toolTip">
              <string>计算所输入的算式</string>
@@ -2481,6 +2598,7 @@ QPushButton:hover {
     </property>
     <addaction name="actionLight"/>
     <addaction name="actionDark"/>
+    <addaction name="actionBlue"/>
    </widget>
    <widget class="QMenu" name="menuHekp">
     <property name="title">
@@ -2491,9 +2609,30 @@ QPushButton:hover {
     <addaction name="separator"/>
     <addaction name="actionContact_us"/>
    </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <widget class="QMenu" name="menuAngle_Mode">
+     <property name="title">
+      <string>Angle Mode</string>
+     </property>
+     <property name="icon">
+      <iconset resource="resource.qrc">
+       <normaloff>:/rcs/angle_set.png</normaloff>:/rcs/angle_set.png</iconset>
+     </property>
+     <addaction name="actionDeg"/>
+     <addaction name="actionRad"/>
+    </widget>
+    <addaction name="menuAngle_Mode"/>
+    <addaction name="actionStyle_DIY"/>
+    <addaction name="separator"/>
+    <addaction name="actionSystem_Settings"/>
+   </widget>
    <addaction name="menuAdvanced"/>
    <addaction name="menuStyle"/>
    <addaction name="menuHistory"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuHekp"/>
   </widget>
   <action name="actionScientific">
@@ -2527,6 +2666,10 @@ QPushButton:hover {
    </property>
   </action>
   <action name="actionCurrent_History">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/history.png</normaloff>:/rcs/history.png</iconset>
+   </property>
    <property name="text">
     <string>Current History</string>
    </property>
@@ -2535,6 +2678,10 @@ QPushButton:hover {
    </property>
   </action>
   <action name="actionAll_History">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/history.png</normaloff>:/rcs/history.png</iconset>
+   </property>
    <property name="text">
     <string>All History</string>
    </property>
@@ -2543,21 +2690,32 @@ QPushButton:hover {
    </property>
   </action>
   <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/help.png</normaloff>:/rcs/help.png</iconset>
+   </property>
    <property name="text">
     <string>Help</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
   </action>
   <action name="actionContact_us">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/email_black.png</normaloff>:/rcs/email_black.png</iconset>
+   </property>
    <property name="text">
     <string>Contact us</string>
    </property>
   </action>
   <action name="actionLight">
    <property name="checkable">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="checked">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Light</string>
@@ -2565,7 +2723,7 @@ QPushButton:hover {
   </action>
   <action name="actionDark">
    <property name="checkable">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="enabled">
     <bool>true</bool>
@@ -2575,8 +2733,57 @@ QPushButton:hover {
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/about.png</normaloff>:/rcs/about.png</iconset>
+   </property>
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionBlue">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Blue</string>
+   </property>
+  </action>
+  <action name="actionStyle_DIY">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/color_setting.png</normaloff>:/rcs/color_setting.png</iconset>
+   </property>
+   <property name="text">
+    <string>Style DIY</string>
+   </property>
+  </action>
+  <action name="actionSystem_Settings">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/rcs/settings.png</normaloff>:/rcs/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>System Settings</string>
+   </property>
+  </action>
+  <action name="actionDeg">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Deg(°)</string>
+   </property>
+  </action>
+  <action name="actionRad">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Rad</string>
    </property>
   </action>
  </widget>

@@ -39,6 +39,11 @@ public:
     QAction *actionLight;
     QAction *actionDark;
     QAction *actionAbout;
+    QAction *actionBlue;
+    QAction *actionStyle_DIY;
+    QAction *actionSystem_Settings;
+    QAction *actionDeg;
+    QAction *actionRad;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout;
@@ -134,6 +139,8 @@ public:
     QMenu *menuHistory;
     QMenu *menuStyle;
     QMenu *menuHekp;
+    QMenu *menuSettings;
+    QMenu *menuAngle_Mode;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -170,22 +177,55 @@ public:
         actionPractice->setIcon(icon3);
         actionCurrent_History = new QAction(MainWindow);
         actionCurrent_History->setObjectName("actionCurrent_History");
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/rcs/history.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCurrent_History->setIcon(icon4);
         actionAll_History = new QAction(MainWindow);
         actionAll_History->setObjectName("actionAll_History");
+        actionAll_History->setIcon(icon4);
         actionHelp = new QAction(MainWindow);
         actionHelp->setObjectName("actionHelp");
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/rcs/help.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionHelp->setIcon(icon5);
         actionContact_us = new QAction(MainWindow);
         actionContact_us->setObjectName("actionContact_us");
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/rcs/email_black.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionContact_us->setIcon(icon6);
         actionLight = new QAction(MainWindow);
         actionLight->setObjectName("actionLight");
-        actionLight->setCheckable(false);
-        actionLight->setChecked(false);
+        actionLight->setCheckable(true);
+        actionLight->setChecked(true);
         actionDark = new QAction(MainWindow);
         actionDark->setObjectName("actionDark");
-        actionDark->setCheckable(false);
+        actionDark->setCheckable(true);
         actionDark->setEnabled(true);
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName("actionAbout");
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/rcs/about.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAbout->setIcon(icon7);
+        actionBlue = new QAction(MainWindow);
+        actionBlue->setObjectName("actionBlue");
+        actionBlue->setCheckable(true);
+        actionStyle_DIY = new QAction(MainWindow);
+        actionStyle_DIY->setObjectName("actionStyle_DIY");
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/rcs/color_setting.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionStyle_DIY->setIcon(icon8);
+        actionSystem_Settings = new QAction(MainWindow);
+        actionSystem_Settings->setObjectName("actionSystem_Settings");
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/rcs/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSystem_Settings->setIcon(icon9);
+        actionDeg = new QAction(MainWindow);
+        actionDeg->setObjectName("actionDeg");
+        actionDeg->setCheckable(true);
+        actionRad = new QAction(MainWindow);
+        actionRad->setObjectName("actionRad");
+        actionRad->setCheckable(true);
+        actionRad->setChecked(true);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayout_2 = new QHBoxLayout(centralwidget);
@@ -254,6 +294,7 @@ public:
         pushButton->setMaximumSize(QSize(60, 60));
         pushButton->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton->setMouseTracking(true);
+        pushButton->setFocusPolicy(Qt::NoFocus);
         pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 26, 106);\n"
@@ -280,6 +321,7 @@ public:
         pushButton_2->setMinimumSize(QSize(60, 60));
         pushButton_2->setMaximumSize(QSize(60, 60));
         pushButton_2->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_2->setFocusPolicy(Qt::NoFocus);
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 157, 87);\n"
@@ -306,6 +348,7 @@ public:
         pushButton_3->setMinimumSize(QSize(60, 60));
         pushButton_3->setMaximumSize(QSize(60, 60));
         pushButton_3->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_3->setFocusPolicy(Qt::NoFocus);
         pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 157, 87);\n"
@@ -331,6 +374,8 @@ public:
         label_3->setObjectName("label_3");
         label_3->setMaximumSize(QSize(160, 60));
         label_3->setBaseSize(QSize(160, 60));
+        label_3->setCursor(QCursor(Qt::PointingHandCursor));
+        label_3->setMouseTracking(false);
         label_3->setStyleSheet(QString::fromUtf8("background-image: url(:/rcs/my_logo.png);\n"
 "background-repeat: no-repeat;\n"
 "background-position: center;\n"
@@ -350,6 +395,7 @@ public:
         pushButton_4->setMinimumSize(QSize(160, 60));
         pushButton_4->setMaximumSize(QSize(160, 60));
         pushButton_4->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_4->setFocusPolicy(Qt::NoFocus);
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 20pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 68, 6);\n"
@@ -376,6 +422,7 @@ public:
         pushButton_5->setMinimumSize(QSize(60, 60));
         pushButton_5->setMaximumSize(QSize(60, 60));
         pushButton_5->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_5->setFocusPolicy(Qt::NoFocus);
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 68, 6);\n"
@@ -420,6 +467,7 @@ public:
         pushButton_6->setMinimumSize(QSize(60, 60));
         pushButton_6->setMaximumSize(QSize(60, 60));
         pushButton_6->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_6->setFocusPolicy(Qt::NoFocus);
         pushButton_6->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -451,6 +499,7 @@ public:
         pushButton_7->setMinimumSize(QSize(60, 60));
         pushButton_7->setMaximumSize(QSize(60, 60));
         pushButton_7->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_7->setFocusPolicy(Qt::NoFocus);
         pushButton_7->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -477,6 +526,7 @@ public:
         pushButton_8->setMinimumSize(QSize(60, 60));
         pushButton_8->setMaximumSize(QSize(60, 60));
         pushButton_8->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_8->setFocusPolicy(Qt::NoFocus);
         pushButton_8->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -503,6 +553,7 @@ public:
         pushButton_30->setMinimumSize(QSize(60, 60));
         pushButton_30->setMaximumSize(QSize(60, 60));
         pushButton_30->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_30->setFocusPolicy(Qt::NoFocus);
         pushButton_30->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 10pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -529,6 +580,7 @@ public:
         pushButton_34->setMinimumSize(QSize(60, 60));
         pushButton_34->setMaximumSize(QSize(60, 60));
         pushButton_34->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_34->setFocusPolicy(Qt::NoFocus);
         pushButton_34->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 10pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -555,6 +607,7 @@ public:
         pushButton_9->setMinimumSize(QSize(60, 60));
         pushButton_9->setMaximumSize(QSize(60, 60));
         pushButton_9->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_9->setFocusPolicy(Qt::NoFocus);
         pushButton_9->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 18pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(14, 183, 255);\n"
@@ -581,6 +634,7 @@ public:
         pushButton_10->setMinimumSize(QSize(60, 60));
         pushButton_10->setMaximumSize(QSize(60, 60));
         pushButton_10->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_10->setFocusPolicy(Qt::NoFocus);
         pushButton_10->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 18pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(132, 225, 0);\n"
@@ -607,6 +661,7 @@ public:
         pushButton_11->setMinimumSize(QSize(60, 60));
         pushButton_11->setMaximumSize(QSize(60, 60));
         pushButton_11->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_11->setFocusPolicy(Qt::NoFocus);
         pushButton_11->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -653,6 +708,7 @@ public:
         pushButton_12->setMinimumSize(QSize(60, 60));
         pushButton_12->setMaximumSize(QSize(60, 60));
         pushButton_12->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_12->setFocusPolicy(Qt::NoFocus);
         pushButton_12->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -679,6 +735,7 @@ public:
         pushButton_13->setMinimumSize(QSize(60, 60));
         pushButton_13->setMaximumSize(QSize(60, 60));
         pushButton_13->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_13->setFocusPolicy(Qt::NoFocus);
         pushButton_13->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -705,6 +762,7 @@ public:
         pushButton_14->setMinimumSize(QSize(60, 60));
         pushButton_14->setMaximumSize(QSize(60, 60));
         pushButton_14->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_14->setFocusPolicy(Qt::NoFocus);
         pushButton_14->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -733,6 +791,7 @@ public:
         pushButton_31->setMinimumSize(QSize(60, 60));
         pushButton_31->setMaximumSize(QSize(60, 60));
         pushButton_31->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_31->setFocusPolicy(Qt::NoFocus);
         pushButton_31->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 10pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -759,6 +818,7 @@ public:
         pushButton_35->setMinimumSize(QSize(60, 60));
         pushButton_35->setMaximumSize(QSize(60, 60));
         pushButton_35->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_35->setFocusPolicy(Qt::NoFocus);
         pushButton_35->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 10pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -785,6 +845,7 @@ public:
         pushButton_15->setMinimumSize(QSize(60, 60));
         pushButton_15->setMaximumSize(QSize(60, 60));
         pushButton_15->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_15->setFocusPolicy(Qt::NoFocus);
         pushButton_15->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(18, 183, 255);\n"
@@ -811,6 +872,7 @@ public:
         pushButton_16->setMinimumSize(QSize(60, 60));
         pushButton_16->setMaximumSize(QSize(60, 60));
         pushButton_16->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_16->setFocusPolicy(Qt::NoFocus);
         pushButton_16->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 18pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(132, 225, 0);\n"
@@ -837,6 +899,7 @@ public:
         pushButton_17->setMinimumSize(QSize(60, 60));
         pushButton_17->setMaximumSize(QSize(60, 60));
         pushButton_17->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_17->setFocusPolicy(Qt::NoFocus);
         pushButton_17->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 9pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -883,6 +946,7 @@ public:
         pushButton_18->setMinimumSize(QSize(60, 60));
         pushButton_18->setMaximumSize(QSize(60, 60));
         pushButton_18->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_18->setFocusPolicy(Qt::NoFocus);
         pushButton_18->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -909,6 +973,7 @@ public:
         pushButton_19->setMinimumSize(QSize(60, 60));
         pushButton_19->setMaximumSize(QSize(40, 16777215));
         pushButton_19->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_19->setFocusPolicy(Qt::NoFocus);
         pushButton_19->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -935,6 +1000,7 @@ public:
         pushButton_20->setMinimumSize(QSize(60, 60));
         pushButton_20->setMaximumSize(QSize(60, 60));
         pushButton_20->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_20->setFocusPolicy(Qt::NoFocus);
         pushButton_20->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -961,6 +1027,7 @@ public:
         pushButton_32->setMinimumSize(QSize(60, 60));
         pushButton_32->setMaximumSize(QSize(60, 60));
         pushButton_32->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_32->setFocusPolicy(Qt::NoFocus);
         pushButton_32->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 10pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -987,6 +1054,7 @@ public:
         pushButton_36->setMinimumSize(QSize(60, 60));
         pushButton_36->setMaximumSize(QSize(60, 60));
         pushButton_36->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_36->setFocusPolicy(Qt::NoFocus);
         pushButton_36->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 10pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -1013,6 +1081,7 @@ public:
         pushButton_21->setMinimumSize(QSize(60, 60));
         pushButton_21->setMaximumSize(QSize(60, 60));
         pushButton_21->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_21->setFocusPolicy(Qt::NoFocus);
         pushButton_21->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(14, 183, 255);\n"
@@ -1039,6 +1108,7 @@ public:
         pushButton_22->setMinimumSize(QSize(60, 60));
         pushButton_22->setMaximumSize(QSize(60, 60));
         pushButton_22->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_22->setFocusPolicy(Qt::NoFocus);
         pushButton_22->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(132, 225, 0);\n"
@@ -1065,6 +1135,7 @@ public:
         pushButton_23->setMinimumSize(QSize(60, 60));
         pushButton_23->setMaximumSize(QSize(60, 60));
         pushButton_23->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_23->setFocusPolicy(Qt::NoFocus);
         pushButton_23->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -1111,6 +1182,7 @@ public:
         pushButton_24->setMinimumSize(QSize(60, 60));
         pushButton_24->setMaximumSize(QSize(60, 60));
         pushButton_24->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_24->setFocusPolicy(Qt::NoFocus);
         pushButton_24->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -1137,6 +1209,7 @@ public:
         pushButton_25->setMinimumSize(QSize(60, 60));
         pushButton_25->setMaximumSize(QSize(60, 60));
         pushButton_25->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_25->setFocusPolicy(Qt::NoFocus);
         pushButton_25->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 12pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -1163,6 +1236,7 @@ public:
         pushButton_26->setMinimumSize(QSize(60, 60));
         pushButton_26->setMaximumSize(QSize(60, 60));
         pushButton_26->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_26->setFocusPolicy(Qt::NoFocus);
         pushButton_26->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 9pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -1189,6 +1263,7 @@ public:
         pushButton_33->setMinimumSize(QSize(60, 60));
         pushButton_33->setMaximumSize(QSize(60, 60));
         pushButton_33->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_33->setFocusPolicy(Qt::NoFocus);
         pushButton_33->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 10pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -1215,6 +1290,7 @@ public:
         pushButton_37->setMinimumSize(QSize(60, 60));
         pushButton_37->setMaximumSize(QSize(60, 60));
         pushButton_37->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_37->setFocusPolicy(Qt::NoFocus);
         pushButton_37->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 10pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 85, 255);\n"
@@ -1241,6 +1317,7 @@ public:
         pushButton_27->setMinimumSize(QSize(60, 60));
         pushButton_27->setMaximumSize(QSize(60, 60));
         pushButton_27->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_27->setFocusPolicy(Qt::NoFocus);
         pushButton_27->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 157, 87);\n"
@@ -1267,6 +1344,7 @@ public:
         pushButton_28->setMinimumSize(QSize(60, 60));
         pushButton_28->setMaximumSize(QSize(60, 60));
         pushButton_28->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_28->setFocusPolicy(Qt::NoFocus);
         pushButton_28->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 157, 87);\n"
@@ -1293,6 +1371,7 @@ public:
         pushButton_29->setMinimumSize(QSize(60, 60));
         pushButton_29->setMaximumSize(QSize(60, 60));
         pushButton_29->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_29->setFocusPolicy(Qt::NoFocus);
         pushButton_29->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 700 14pt \"Microsoft YaHei UI\";\n"
 "    background-color: rgb(255, 26, 106);\n"
@@ -1366,11 +1445,19 @@ public:
         menuStyle->setObjectName("menuStyle");
         menuHekp = new QMenu(menubar);
         menuHekp->setObjectName("menuHekp");
+        menuSettings = new QMenu(menubar);
+        menuSettings->setObjectName("menuSettings");
+        menuAngle_Mode = new QMenu(menuSettings);
+        menuAngle_Mode->setObjectName("menuAngle_Mode");
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/rcs/angle_set.png"), QSize(), QIcon::Normal, QIcon::Off);
+        menuAngle_Mode->setIcon(icon10);
         MainWindow->setMenuBar(menubar);
 
         menubar->addAction(menuAdvanced->menuAction());
         menubar->addAction(menuStyle->menuAction());
         menubar->addAction(menuHistory->menuAction());
+        menubar->addAction(menuSettings->menuAction());
         menubar->addAction(menuHekp->menuAction());
         menuAdvanced->addAction(actionScientific);
         menuAdvanced->addAction(actionComplex);
@@ -1382,10 +1469,17 @@ public:
         menuHistory->addAction(actionAll_History);
         menuStyle->addAction(actionLight);
         menuStyle->addAction(actionDark);
+        menuStyle->addAction(actionBlue);
         menuHekp->addAction(actionAbout);
         menuHekp->addAction(actionHelp);
         menuHekp->addSeparator();
         menuHekp->addAction(actionContact_us);
+        menuSettings->addAction(menuAngle_Mode->menuAction());
+        menuSettings->addAction(actionStyle_DIY);
+        menuSettings->addSeparator();
+        menuSettings->addAction(actionSystem_Settings);
+        menuAngle_Mode->addAction(actionDeg);
+        menuAngle_Mode->addAction(actionRad);
 
         retranslateUi(MainWindow);
 
@@ -1410,10 +1504,18 @@ public:
         actionAll_History->setShortcut(QCoreApplication::translate("MainWindow", "Alt+H", nullptr));
 #endif // QT_CONFIG(shortcut)
         actionHelp->setText(QCoreApplication::translate("MainWindow", "Help", nullptr));
+#if QT_CONFIG(shortcut)
+        actionHelp->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+H", nullptr));
+#endif // QT_CONFIG(shortcut)
         actionContact_us->setText(QCoreApplication::translate("MainWindow", "Contact us", nullptr));
         actionLight->setText(QCoreApplication::translate("MainWindow", "Light", nullptr));
         actionDark->setText(QCoreApplication::translate("MainWindow", "Dark", nullptr));
         actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
+        actionBlue->setText(QCoreApplication::translate("MainWindow", "Blue", nullptr));
+        actionStyle_DIY->setText(QCoreApplication::translate("MainWindow", "Style DIY", nullptr));
+        actionSystem_Settings->setText(QCoreApplication::translate("MainWindow", "System Settings", nullptr));
+        actionDeg->setText(QCoreApplication::translate("MainWindow", "Deg(\302\260)", nullptr));
+        actionRad->setText(QCoreApplication::translate("MainWindow", "Rad", nullptr));
         label->setText(QString());
         label_2->setText(QString());
 #if QT_CONFIG(tooltip)
@@ -1447,7 +1549,7 @@ public:
         pushButton_3->setShortcut(QCoreApplication::translate("MainWindow", ")", nullptr));
 #endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
-        label_3->setToolTip(QString());
+        label_3->setToolTip(QCoreApplication::translate("MainWindow", "\347\202\271\346\210\221\350\216\267\345\276\227\351\232\217\346\234\272\346\225\260", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(whatsthis)
         label_3->setWhatsThis(QString());
@@ -1797,6 +1899,8 @@ public:
         menuHistory->setTitle(QCoreApplication::translate("MainWindow", "History", nullptr));
         menuStyle->setTitle(QCoreApplication::translate("MainWindow", "Style", nullptr));
         menuHekp->setTitle(QCoreApplication::translate("MainWindow", "About", nullptr));
+        menuSettings->setTitle(QCoreApplication::translate("MainWindow", "Settings", nullptr));
+        menuAngle_Mode->setTitle(QCoreApplication::translate("MainWindow", "Angle Mode", nullptr));
     } // retranslateUi
 
 };

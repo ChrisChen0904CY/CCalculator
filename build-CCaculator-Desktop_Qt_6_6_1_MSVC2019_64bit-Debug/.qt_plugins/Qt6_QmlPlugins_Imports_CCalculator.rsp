@@ -1,0 +1,9 @@
+-rootPath
+P:/QT_Templates/Calculators/CCalculator
+-cmake-output
+-output-file
+P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/.qt_plugins/Qt6_QmlPlugins_Imports_CCalculator.cmake
+-importPath
+P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug
+-importPath
+P:/Qt/6.6.1/msvc2019_64/./qml

@@ -1,4 +1,4 @@
-# CCaculator v1.1 使用指南
+# CCaculator v1.5 使用指南
 
 <div style="display: flex; justify-content: space-between; padding: 0 30%;">
   <a href="./README.md">中文指南</a>
@@ -65,6 +65,8 @@ win32:CONFIG(release, debug|release): LIBS += -L$$[QT_INSTALL_LIBS] -lQt6Sql
 win32:CONFIG(debug, debug|release): LIBS += -L$$[QT_INSTALL_LIBS] -lQt6Sqld
 ```
 
+## <a id="chapter-2">2. 按键&快捷键说明</a>
+
 本计算器的按键均绑定了键盘上的按键作为快捷键以方便使用。下面给出所有按键和对于快捷键的说明：
 
 | 按键                      | 快捷键     | 功能                |
@@ -100,12 +102,15 @@ win32:CONFIG(debug, debug|release): LIBS += -L$$[QT_INSTALL_LIBS] -lQt6Sqld
 | log                     | L       | 输入普通对数运算符         |
 | History→Current History | H       | 查看本次运行的计算记录       |
 | History→All History     | Alt+H   | 查看本软件安装以来的所有计算记录  |
+| 右上角关闭按钮                 | Ctrl+W  | 关闭本软件             |
 
-## <a id="chapter-3">3. 颜色切换功能(初版)</a>
+## <a id="chapter-3">3. 颜色切换功能</a>
 
-本计算器在 Style 菜单中提供了两种预设的颜色方案，`Light` 表示白色背景，`Dark` 表示黑色背景。
+本计算器在 Style 菜单中提供了三种预设的颜色方案，`Light` 表示亮色风格，`Dark` 表示深色风格，`Blue` 是蓝色和粉色风格的配色方案。
 
-后续将在代码中为所有按键进行归纳分类，并提供对所有按键、窗口背景的颜色方案修改接口。
+您可以直接在 `mainwindow.ui` 中的Style菜单下输入您的预设外观名称，接着在 `styles.h` 中参照注释编写您需要的QSS样式，程序就会自动处理您构造的外观方案。
+
+后续会在Settings中的Style DIY中完成色盘直接设置的功能。
 
 ## <a id="chapter-4">4. 未来开发展望</a>
 
@@ -113,10 +118,10 @@ win32:CONFIG(debug, debug|release): LIBS += -L$$[QT_INSTALL_LIBS] -lQt6Sqld
 
 v2.0 版本展望：
 
-- 更完整更自由的颜色切换接口
-- 通过鼠标和键盘左右按键对输入算式进行插入输入/删除
-- 构造一个 About 页面方便大家在使用时查看软件相关信息
-- 完成 Contact 快速跳转邮件发送页面的功能
+- 更完整更自由的颜色切换接口（已实现）
+- 通过鼠标和键盘左右按键对输入算式进行插入输入/删除（已实现键盘左右按钮进行光标移动）
+- 构造一个 About 页面方便大家在使用时查看软件相关信息（已实现）
+- 完成 Contact 快速跳转邮件发送页面的功能（已实现）
 - 完成复数运算模式的开发
 - 完成 Practice 随机生成计算题的功能开发
 

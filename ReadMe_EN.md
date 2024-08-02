@@ -1,4 +1,4 @@
-# CCaculator v1.1 Instruction
+# CCaculator v1.5 Instruction
 
 <div style="display: flex; justify-content: space-between; padding: 0 30%;">
   <a href="./README.md">中文指南</a>
@@ -65,47 +65,52 @@ win32:CONFIG(release, debug|release): LIBS += -L$$[QT_INSTALL_LIBS] -lQt6Sql
 win32:CONFIG(debug, debug|release): LIBS += -L$$[QT_INSTALL_LIBS] -lQt6Sqld
 ```
 
+## <a id="chapter-2">2. Button & Shortcut Key Instructions</a>
+
 The buttons of this calculator are all bound to keyboard keys as shortcuts for ease of use. Below are all buttons and their corresponding shortcuts:
 
-| Button                  | Shortcut   | Function                           |
-|:-----------------------:|:---------:|:---------------------------------:|
-| 0~9                     | 0~9       | Input numbers 0~9                 |
-| .                       | .         | Input decimal point               |
+| Button                  | Shortcut  | Function                                                                        |
+|:-----------------------:|:---------:|:-------------------------------------------------------------------------------:|
+| 0~9                     | 0~9       | Input numbers 0~9                                                               |
+| .                       | .         | Input decimal point                                                             |
 | Ans                     | Ctrl+A    | Input the result of the previous operation at the end of the current expression |
-| E                       | Ctrl+E    | Check if the input expression contains errors |
-| (                       | (         | Input left parenthesis            |
-| )                       | )         | Input right parenthesis           |
-| ←                       | Backspace | Delete the last input character/operator |
-| C                       | Ctrl+C    | Clear all inputs                  |
-| $+$                     | $+$       | Input plus sign                   |
-| $-$                     | $-$       | Input minus sign/negative sign    |
-| ×                       | $*$       | Input multiplication sign         |
-| ÷                       | /         | Input division sign               |
-| %                       | %         | Input percentage sign             |
-| MOD                     | M         | Input modulo symbol               |
-| ^                       | ^         | Input power/exponentiation symbol |
-| !                       | !         | Input factorial operator          |
-| !!                      | @         | Input double factorial operator   |
-| $\pi$                   | P         | Input the value of $\pi$          |
-| e                       | E         | Input the value of e              |
-| =                       | Enter     | Calculate the result of the current expression |
-| Mode→Scientific/Normal  | Alt+S     | Switch between normal/scientific calculation modes |
-| sin                     | S         | Input sine function               |
-| arcsin                  | Shift+S   | Input inverse sine function       |
-| cos                     | C         | Input cosine function             |
-| arccos                  | Shift+C   | Input inverse cosine function     |
-| tan                     | T         | Input tangent function            |
-| arctan                  | Shift+T   | Input inverse tangent function    |
-| ln                      | Shift+L   | Input natural logarithm function  |
-| log                     | L         | Input logarithm function          |
-| History→Current History | H         | View the calculation history of the current session |
-| History→All History     | Alt+H     | View all calculation history since the software installation |
+| E                       | Ctrl+E    | Check if the input expression contains errors                                   |
+| (                       | (         | Input left parenthesis                                                          |
+| )                       | )         | Input right parenthesis                                                         |
+| ←                       | Backspace | Delete the last input character/operator                                        |
+| C                       | Ctrl+C    | Clear all inputs                                                                |
+| $+$                     | $+$       | Input plus sign                                                                 |
+| $-$                     | $-$       | Input minus sign/negative sign                                                  |
+| ×                       | $*$       | Input multiplication sign                                                       |
+| ÷                       | /         | Input division sign                                                             |
+| %                       | %         | Input percentage sign                                                           |
+| MOD                     | M         | Input modulo symbol                                                             |
+| ^                       | ^         | Input power/exponentiation symbol                                               |
+| !                       | !         | Input factorial operator                                                        |
+| !!                      | @         | Input double factorial operator                                                 |
+| $\pi$                   | P         | Input the value of $\pi$                                                        |
+| e                       | E         | Input the value of e                                                            |
+| =                       | Enter     | Calculate the result of the current expression                                  |
+| Mode→Scientific/Normal  | Alt+S     | Switch between normal/scientific calculation modes                              |
+| sin                     | S         | Input sine function                                                             |
+| arcsin                  | Shift+S   | Input inverse sine function                                                     |
+| cos                     | C         | Input cosine function                                                           |
+| arccos                  | Shift+C   | Input inverse cosine function                                                   |
+| tan                     | T         | Input tangent function                                                          |
+| arctan                  | Shift+T   | Input inverse tangent function                                                  |
+| ln                      | Shift+L   | Input natural logarithm function                                                |
+| log                     | L         | Input logarithm function                                                        |
+| History→Current History | H         | View the calculation history of the current session                             |
+| History→All History     | Alt+H     | View all calculation history since the software installation                    |
+| The Close Button        | Ctrl+W    | Close this software                                                             |
 
 ## <a id="chapter-3">3. Color Switching Function (Initial Version)</a>
 
-This calculator provides two preset color schemes in the Style menu: `Light` for white background and `Dark` for black background.
+This calculator offers three preset color schemes in the Style menu: `Light` for a light theme, `Dark` for a dark theme, and `Blue` for a blue and pink color combination.
 
-In the future, we will classify all buttons in the code and provide an interface to modify the color schemes of all buttons and window backgrounds.
+You can enter the name of your preset appearance directly under the Style menu in the `mainwindow.ui` file. Then, following the comments in `styles.h`, you can write the QSS styles you need. The program will automatically handle the appearance scheme you create.
+
+In the future, the feature to directly set the color palette will be completed under Style DIY in Settings.
 
 ## <a id="chapter-4">4. Future Development Prospects</a>
 
@@ -113,12 +118,12 @@ In future development, the following features will be added in order:
 
 Version 2.0 Outlook:
 
-- A more complete and flexible color switching interface
-- Insert/delete input expressions using the left and right mouse and keyboard buttons
-- Create an About page to easily view software-related information while using it
-- Complete the Contact page with quick email sending functionality
-- Complete the development of the complex number calculation mode
-- Complete the development of the Practice feature to randomly generate math problems
+- A more comprehensive and flexible color switching interface (implemented)
+- Insert and delete input formulas using the mouse and keyboard arrow keys (keyboard arrow keys for cursor movement implemented)
+- Create an About page for users to view relevant software information (implemented)
+- Implement the Contact page for quick email sending (implemented)
+- Develop complex number operation mode
+- Develop the Practice feature to randomly generate math problems
 
 After the above features are completed, CCalculator v2.0 will be released.
 

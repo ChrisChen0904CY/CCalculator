@@ -1,4 +1,5 @@
 P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Release/CMakeFiles/CCalculator.dir
+P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Release/CMakeFiles/CCalculator_qmlimportscan.dir
 P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Release/CMakeFiles/edit_cache.dir
 P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Release/CMakeFiles/rebuild_cache.dir
 P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Release/CMakeFiles/list_install_components.dir

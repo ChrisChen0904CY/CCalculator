@@ -1,5 +1,8 @@
 P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CCalculator_autogen/EWIEGA46WW/moc_mainwindow.cpp: P:/QT_Templates/Calculators/CCalculator/mainwindow.h \
+  P:/QT_Templates/Calculators/CCalculator/clickablelabelfilter.h \
   P:/QT_Templates/Calculators/CCalculator/historyview.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/QDebug \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/QEvent \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QFileInfo \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QList \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QMap \
@@ -8,7 +11,9 @@ P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Deb
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QSettings \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QSize \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QSizeF \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/QStack \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QString \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/QTimer \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/QVector \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/q20functional.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/q20memory.h \
@@ -24,6 +29,7 @@ P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Deb
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qatomic.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qatomic_cxx11.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qbasicatomic.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qbasictimer.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qbindingstorage.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qbytearray.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qbytearrayalgorithms.h \
@@ -103,6 +109,7 @@ P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Deb
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qsharedpointer.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qsharedpointer_impl.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qsize.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qstack.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qstring.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qstringalgorithms.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qstringbuilder.h \
@@ -125,6 +132,7 @@ P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Deb
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtdeprecationmarkers.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtenvironmentvariables.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtextstream.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtimer.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtimezone.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtmetamacros.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qtnoop.h \
@@ -143,17 +151,22 @@ P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Deb
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qvector.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qversiontagging.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtCore/qxptype_traits.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtGui/QActionGroup \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QClipboard \
+  P:/Qt/6.6.1/msvc2019_64/include/QtGui/QDesktopServices \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QFont \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QKeyEvent \
+  P:/Qt/6.6.1/msvc2019_64/include/QtGui/QMouseEvent \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QScreen \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/QTransform \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qaction.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtGui/qactiongroup.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qbitmap.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qbrush.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qclipboard.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qcolor.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qcursor.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtGui/qdesktopservices.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qevent.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qeventpoint.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtGui/qfont.h \
@@ -197,6 +210,7 @@ P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Deb
   P:/Qt/6.6.1/msvc2019_64/include/QtSql/qtsqlexports.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtSql/qtsqlglobal.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QApplication \
+  P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QHBoxLayout \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QLabel \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QMainWindow \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QMessageBox \
@@ -204,6 +218,7 @@ P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Deb
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QSpacerItem \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QTableWidget \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QTableWidgetItem \
+  P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QVBoxLayout \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/QWidget \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qabstractbutton.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -212,9 +227,12 @@ P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Deb
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qabstractslider.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qabstractspinbox.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qapplication.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qboxlayout.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qdialog.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qframe.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qgridlayout.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qlabel.h \
+  P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qlayout.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qlayoutitem.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qmainwindow.h \
   P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qmessagebox.h \

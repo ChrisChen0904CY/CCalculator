@@ -17,6 +17,7 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        aboutpage.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -32,7 +33,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         styles.h
         qutils.h
         qutils.cpp
-
+        aboutpagelite.h aboutpagelite.cpp
+        helpdialog.h helpdialog.cpp helpdialog.ui
+        clickablelabelfilter.h clickablelabelfilter.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
@@ -71,8 +74,9 @@ set_target_properties(CCalculator PROPERTIES
 
 # 加入 sql 链接必要的动态库
 target_link_libraries(CCalculator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
-                      Qt${QT_VERSION_MAJOR}::Sql)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Sql REQUIRED)
+                      Qt${QT_VERSION_MAJOR}::Sql
+                      Qt${QT_VERSION_MAJOR}::WebEngineWidgets)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Sql WebEngineWidgets REQUIRED)
 
 
 include(GNUInstallDirs)

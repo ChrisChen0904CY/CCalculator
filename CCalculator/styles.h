@@ -178,8 +178,86 @@ QVector<QString> Dark_Styles = {"QMainWindow {background-color: rgb(64, 65, 66);
                                 "border-color: white;"
                                 "}"};
 
-QMap<QString, QVector<QString>> styleMap = {{"Light", Light_Styles},
-                                            {"Dark", Dark_Styles}};
+// Blue Style
+QVector<QString> Blue_Styles = {"QMainWindow {background-color: rgb(112, 245, 236);}",
+                                // 数字/小数点/Answer按键
+                                "QPushButton {background-color: rgb(255, 255, 255);"
+                                "color: rgb(0, 0, 0);"
+                                "border-color: rgb(168, 168, 168);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(210, 210, 210);}",
+                                // 第一列运算符按钮
+                                "QPushButton {background-color: rgb(255, 255, 255);"
+                                "color: rgb(0, 0, 0);"
+                                "border-color: rgb(168, 168, 168);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(210, 210, 210);}",
+                                // 第二列运算符按钮
+                                "QPushButton {background-color: rgb(255, 255, 255);"
+                                "color: rgb(0, 0, 0);"
+                                "border-color: rgb(168, 168, 168);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(210, 210, 210);}",
+                                // 第三列运算符按钮
+                                "QPushButton {background-color: rgb(255, 255, 255);"
+                                "color: rgb(0, 0, 0);"
+                                "border-color: rgb(168, 168, 168);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(210, 210, 210);}",
+                                // 两个括号按钮
+                                "QPushButton {background-color: rgb(255, 255, 255);"
+                                "color: rgb(0, 0, 0);"
+                                "border-color: rgb(168, 168, 168);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(210, 210, 210);}",
+                                // 退格和清空按钮
+                                "QPushButton {background-color: rgb(255, 206, 227);"
+                                "color: rgb(255, 255, 255);"
+                                "border-color: rgb(225, 176, 197);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(205, 156, 177);}",
+                                // 两个特殊常数按钮
+                                "QPushButton {background-color: rgb(255, 255, 255);"
+                                "color: rgb(0, 0, 0);"
+                                "border-color: rgb(168, 168, 168);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(210, 210, 210);}",
+                                // 八个函数按钮
+                                "QPushButton {background-color: rgb(255, 255, 255);"
+                                "color: rgb(0, 0, 0);"
+                                "border-color: rgb(168, 168, 168);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(210, 210, 210);}",
+                                // 错误自检按钮
+                                "QPushButton {background-color: rgb(255, 206, 227);"
+                                "color: rgb(255, 255, 255);"
+                                "border-color: rgb(225, 176, 197);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(205, 156, 177);}",
+                                // 等于号按钮
+                                "QPushButton {background-color: rgb(255, 206, 227);"
+                                "color: rgb(255, 255, 255);"
+                                "border-color: rgb(225, 176, 197);}"
+                                "QPushButton:hover {"
+                                "background-color: rgb(205, 156, 177);}",
+                                // 算式输入框
+                                "QLabel {"
+                                "background-color: white;"
+                                "font: 16pt \"Microsoft YaHei UI\";"
+                                "color: black;"
+                                "border-color: black;"
+                                "}",
+                                // 结果展示框
+                                "QLabel {"
+                                "background-color: white;"
+                                "font: 16pt \"Microsoft YaHei UI\";"
+                                "color: black;"
+                                "border-color: black;"
+                                "}"};
 
+// 通过方案名称映射到对应的QSS方案数组
+QMap<QString, QVector<QString>> styleMap = {{"Light", Light_Styles},
+                                            {"Dark", Dark_Styles},
+                                            {"Blue", Blue_Styles}};
 
 #endif // STYLES_H

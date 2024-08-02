@@ -98,13 +98,15 @@ public:
 "	border-width: 1px;\n"
 "    border-style: solid;\n"
 "	border-radius: 5px;\n"
-"	background-image: url(:/rcs/left.png);\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
 "    background-color: rgb(210, 210, 210);  /* \350\260\203\346\267\261\347\232\204\351\242\234\350\211\262 */\n"
 "}\n"
 ""));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/rcs/left.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon1);
 
         horizontalLayout_2->addWidget(pushButton);
 
@@ -135,13 +137,15 @@ public:
 "	border-width: 1px;\n"
 "    border-style: solid;\n"
 "	border-radius: 5px;\n"
-"	background-image: url(:/rcs/right.png);\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
 "    background-color: rgb(210, 210, 210);  /* \350\260\203\346\267\261\347\232\204\351\242\234\350\211\262 */\n"
 "}\n"
 ""));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/rcs/right.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon2);
 
         horizontalLayout_2->addWidget(pushButton_2);
 

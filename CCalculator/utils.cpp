@@ -70,7 +70,7 @@ double logx(double a, double b) {
         throw "对数运算中真数必须为非负数！";
     }
     // 通过检验直接计算
-    return log(a)/log(b);
+    return log(b)/log(a);
 }
 
 // ε --- 用于确定是否是 Pi 的整数倍
@@ -107,19 +107,33 @@ string num_extract(string formula, vector<double>& vec)
             tmp += c;
         }
         else {
-            if (tmp.size() > 0 && tmp != "-") {
-                vec.push_back(stod(tmp));
-                processed_formula += to_string(id++);
-                tmp = "";
+            if (tmp.size() > 0) {
+                if (tmp == ".") {
+                    vec.push_back(0.0);
+                    processed_formula += to_string(id++);
+                    tmp = "";
+                }
+                else {
+                    vec.push_back(stod(tmp));
+                    processed_formula += to_string(id++);
+                    tmp = "";
+                }
             }
             processed_formula += c;
         }
     }
     // 尾处理
     if (tmp.size() > 0) {
-        vec.push_back(stod(tmp));
-        processed_formula += to_string(id++);
-        tmp = "";
+        if (tmp == ".") {
+            vec.push_back(0.0);
+            processed_formula += to_string(id++);
+            tmp = "";
+        }
+        else {
+            vec.push_back(stod(tmp));
+            processed_formula += to_string(id++);
+            tmp = "";
+        }
     }
     return processed_formula;
 }
@@ -196,6 +210,9 @@ double compute(string formula, vector<double> &num_vec, bool rad)
                 // arcsin
                 else if (formula[bracket_pos.top()-1] == 's') {
                     cur_res = asin(cur_res);
+                    if (!rad) {
+                        cur_res = cur_res*180/M_PI;
+                    }
                 }
                 // cos
                 else if (formula[bracket_pos.top()-1] == 'C') {
@@ -207,6 +224,9 @@ double compute(string formula, vector<double> &num_vec, bool rad)
                 // arccos
                 else if (formula[bracket_pos.top()-1] == 'c') {
                     cur_res = acos(cur_res);
+                    if (!rad) {
+                        cur_res = cur_res*180/M_PI;
+                    }
                 }
                 // tan
                 else if (formula[bracket_pos.top()-1] == 'T') {
@@ -218,6 +238,9 @@ double compute(string formula, vector<double> &num_vec, bool rad)
                 // arctan
                 else if (formula[bracket_pos.top()-1] == 't') {
                     cur_res = atan(cur_res);
+                    if (!rad) {
+                        cur_res = cur_res*180/M_PI;
+                    }
                 }
                 // ln
                 else if (formula[bracket_pos.top()-1] == 'L') {
