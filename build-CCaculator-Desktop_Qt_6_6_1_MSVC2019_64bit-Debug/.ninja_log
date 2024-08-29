@@ -81,3 +81,12 @@
 5240	5799	7466235884056556	CCalculator.exe	c59226cd731c48f3
 30	665	7466236844360347	CMakeFiles/CCalculator.dir/versionInfo.rc.res	3c460e81a2222626
 666	913	7466236846378793	CCalculator.exe	c59226cd731c48f3
+26	455	7466245233173037	CCalculator_autogen/timestamp	b39dccf5cc08092c
+26	455	7466245233173037	CCalculator_autogen/mocs_compilation.cpp	b39dccf5cc08092c
+26	455	7466245233173037	P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CCalculator_autogen/timestamp	b39dccf5cc08092c
+26	455	7466245233173037	P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CCalculator_autogen/mocs_compilation.cpp	b39dccf5cc08092c
+487	3272	7466245261335685	CMakeFiles/CCalculator.dir/helpdialog.cpp.obj	56b01a1045985612
+472	3459	7466245263189003	CMakeFiles/CCalculator.dir/historyview.cpp.obj	93daa38133d6e80a
+480	3733	7466245265963447	CMakeFiles/CCalculator.dir/aboutpagelite.cpp.obj	2a6b582e633f2dc2
+465	5063	7466245279219019	CMakeFiles/CCalculator.dir/mainwindow.cpp.obj	c7d347c0d33e0374
+5063	5413	7466245282163342	CCalculator.exe	c59226cd731c48f3

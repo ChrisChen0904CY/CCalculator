@@ -574,6 +574,11 @@ void MainWindow::back_clicked()
         // 更新光标位置
         currentCursor.first -= 1;
         currentCursor.second -= 1;
+        // 特殊处理前面一个是非函数符号的情况
+        if (currentCursor.second > 0 && !isFunctionSymbol(this->formula_cal_text[currentCursor.second-1])) {
+            // 进行修正 将光标移动到最左边的锚点处
+            currentCursor.first -= symbol_map[this->formula_cal_text[currentCursor.second-1]].size() - 1;
+        }
     }
 
     // 更新到两个显示字符串

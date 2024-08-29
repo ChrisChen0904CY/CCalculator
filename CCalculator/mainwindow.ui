@@ -2031,7 +2031,7 @@ QPushButton:hover {
              <string>!!</string>
             </property>
             <property name="shortcut">
-             <string>Ctrl+1</string>
+             <string>@</string>
             </property>
            </widget>
           </item>

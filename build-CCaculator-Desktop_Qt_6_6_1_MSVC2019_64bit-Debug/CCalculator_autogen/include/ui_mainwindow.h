@@ -1813,7 +1813,7 @@ public:
 #endif // QT_CONFIG(whatsthis)
         pushButton_23->setText(QCoreApplication::translate("MainWindow", "!!", nullptr));
 #if QT_CONFIG(shortcut)
-        pushButton_23->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+1", nullptr));
+        pushButton_23->setShortcut(QCoreApplication::translate("MainWindow", "@", nullptr));
 #endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         pushButton_24->setToolTip(QCoreApplication::translate("MainWindow", "\345\260\217\346\225\260\347\202\271", nullptr));
