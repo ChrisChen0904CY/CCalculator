@@ -531,7 +531,7 @@ void MainWindow::right_bracket_clicked()
 void MainWindow::back_clicked()
 {
     // 当前无内容时啥也不干
-    if (this->formula_text.size() == 0) {
+    if (this->formula_cal_text.isEmpty()) {
         return;
     }
 
@@ -562,16 +562,17 @@ void MainWindow::back_clicked()
     else {
         // 如果被删部分前面还有内容就加上
         if (currentCursor.second >= 2) {
-            newFormula += formula_text.mid(0, currentCursor.first-symbol_map[currentCalChar].size());
+            newFormula += formula_text.mid(0, currentCursor.first-1);
             newCalFormula += formula_cal_text.mid(0, currentCursor.second-1);
         }
         // 如果被删部分后面还有内容也加上
         if (currentCursor.second < formula_cal_text.size()) {
-            newFormula += formula_text.mid(currentCursor.first, formula_text.size()-currentCursor.first);
+            newFormula += formula_text.mid(currentCursor.first+symbol_map[currentCalChar].size()-1,
+                                           formula_text.size()-currentCursor.first-symbol_map[currentCalChar].size()+1);
             newCalFormula += formula_cal_text.mid(currentCursor.second, formula_cal_text.size()-currentCursor.second);
         }
         // 更新光标位置
-        currentCursor.first -= symbol_map[currentCalChar].size();
+        currentCursor.first -= 1;
         currentCursor.second -= 1;
     }
 
@@ -706,6 +707,11 @@ void MainWindow::pprod_clicked()
 // 等于号按键响应槽函数
 void MainWindow::equal_clicked()
 {
+    // 没有输入则不进行响应
+    if (this->formula_cal_text.isEmpty()) {
+        return;
+    }
+
     // 先检验计算式的小数点和尾字符是否合法
     if (!checkDots(this->formula_cal_text)) {
         QMessageBox::critical(this, "表达式输入错误",
@@ -1488,8 +1494,8 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
         else {
             // 直接将计算式位置移到左边
             currentCursor.second -= 1;
-            // 接着将显示式的光标位置左移对应长度
-            currentCursor.first -= symbol_map[currentChar].size();
+            // 接着将显示式的光标位置左移前一个字符的对应长度
+            currentCursor.first -= symbol_map[this->formula_cal_text[currentCursor.second-1]].size();
         }
         // 刷新光标显示
         cursorDisplay = true;
@@ -1522,6 +1528,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
         // 刷新光标显示
         cursorDisplay = true;
         updateLabel();
+    }
+
+    // 检测回车键来调用等于按钮 而非用 shortcut
+    else if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
+        this->equal_clicked();
     }
 
     // 调用基类的事件处理函数
@@ -1833,12 +1844,32 @@ void MainWindow::cursorTimerInit() {
 
 // 在光标后插入输入的数据或符号
 void MainWindow::insertInput(QString displayText, QString calculateText) {
-    // 插入到光标之后
-    formula_text.insert(currentCursor.first, displayText.toUtf8());
-    formula_cal_text.insert(currentCursor.second, calculateText.toUtf8());
+    // 空表达式直接赋值
+    if (this->formula_cal_text.isEmpty()) {
+        // 插入到光标之后
+        formula_text = displayText;
+        formula_cal_text = calculateText;
+    }
+    else {
+        // 插入到光标之后
+        formula_text.insert(currentCursor.first+symbol_map[this->formula_cal_text[currentCursor.second-1]].size()-1,
+                            displayText);
+        formula_cal_text.insert(currentCursor.second, calculateText);
+    }
 
+    // 如果前一个元素是一个非运算符则还需要进行额外位移
+    if (currentCursor.second > 0 && !isFunctionSymbol(this->formula_cal_text[currentCursor.second-1])) {
+        currentCursor.first += symbol_map[this->formula_cal_text[currentCursor.second-1]].size()-1;
+    }
     // 更新光标位置
-    currentCursor.first += displayText.size();
+    if (!isFunctionSymbol(calculateText[0])) {
+        // 非函数的光标锚点在第一个字符处
+        currentCursor.first += 1;
+    }
+    else {
+        // 函数的锚点在左括号
+        currentCursor.first += displayText.size();
+    }
     currentCursor.second += calculateText.size();
 
     // 刷新显示框

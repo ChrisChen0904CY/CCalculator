@@ -613,14 +613,14 @@ P:/QT_Templates/Calculators/CCalculator/mainwindow.h
  mdp:P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qtwidgetsexports.h
  mdp:P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qtwidgetsglobal.h
  mdp:P:/Qt/6.6.1/msvc2019_64/include/QtWidgets/qwidget.h
-P:/QT_Templates/Calculators/CCalculator/qutils.h
 P:/QT_Templates/Calculators/CCalculator/mainwindow.cpp
  uic:./ui_mainwindow.h
 P:/QT_Templates/Calculators/CCalculator/historyview.cpp
  uic:ui_historyview.h
+P:/QT_Templates/Calculators/CCalculator/qutils.h
 P:/QT_Templates/Calculators/CCalculator/styles.h
-P:/QT_Templates/Calculators/CCalculator/clickablelabelfilter.cpp
 P:/QT_Templates/Calculators/CCalculator/utils.h
+P:/QT_Templates/Calculators/CCalculator/clickablelabelfilter.cpp
 P:/QT_Templates/Calculators/CCalculator/aboutpage.cpp
  uic:ui_aboutpage.h
 P:/QT_Templates/Calculators/CCalculator/main.cpp

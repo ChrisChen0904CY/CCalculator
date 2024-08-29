@@ -5785,8 +5785,8 @@
 #line 5 "P:\\QT_Templates\\Calculators\\CCalculator\\versionInfo.rc"
 #line 6 "P:\\QT_Templates\\Calculators\\CCalculator\\versionInfo.rc"
 1 VERSIONINFO
-    FILEVERSION 1,5,0,0
-    PRODUCTVERSION 1,5,0,0
+    FILEVERSION 1,5,2,0
+    PRODUCTVERSION 1,5,2,0
     FILEFLAGSMASK 0x3fL
 
 
@@ -5803,12 +5803,12 @@
             BEGIN
                 VALUE "CompanyName", "Chris Chen"
                 VALUE "FileDescription", "CCalculator"
-                VALUE "FileVersion", "1.5.0.0"
+                VALUE "FileVersion", "1.5.2.0"
                 VALUE "InternalName", "CCalculator.exe"
                 VALUE "LegalCopyright", "Copyright (c) 2024 Chris Chen"
                 VALUE "OriginalFilename", "CCalculator.exe"
                 VALUE "ProductName", "CCalculator"
-                VALUE "ProductVersion", "1.5.0.0"
+                VALUE "ProductVersion", "1.5.2.0"
             END
         END
         BLOCK "VarFileInfo"

@@ -1892,9 +1892,6 @@ public:
         pushButton_29->setWhatsThis(QString());
 #endif // QT_CONFIG(whatsthis)
         pushButton_29->setText(QCoreApplication::translate("MainWindow", "=", nullptr));
-#if QT_CONFIG(shortcut)
-        pushButton_29->setShortcut(QCoreApplication::translate("MainWindow", "Return", nullptr));
-#endif // QT_CONFIG(shortcut)
         menuAdvanced->setTitle(QCoreApplication::translate("MainWindow", "Mode", nullptr));
         menuHistory->setTitle(QCoreApplication::translate("MainWindow", "History", nullptr));
         menuStyle->setTitle(QCoreApplication::translate("MainWindow", "Style", nullptr));

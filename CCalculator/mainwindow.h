@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 // 软件版本号
-#define CURRENT_VERSION "1.5.0"
+#define CURRENT_VERSION "1.5.2"
 
 #include <QApplication>
 #include <QScreen>
