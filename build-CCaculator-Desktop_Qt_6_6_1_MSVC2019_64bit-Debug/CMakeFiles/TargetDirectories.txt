@@ -1,9 +1,0 @@
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/CCalculator.dir
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/CCalculator_qmlimportscan.dir
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/edit_cache.dir
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/rebuild_cache.dir
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/list_install_components.dir
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/install.dir
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/install/local.dir
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/CCalculator_autogen_timestamp_deps.dir
-P:/QT_Templates/Calculators/build-CCaculator-Desktop_Qt_6_6_1_MSVC2019_64bit-Debug/CMakeFiles/CCalculator_autogen.dir
