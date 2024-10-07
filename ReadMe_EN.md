@@ -1,4 +1,4 @@
-# CCaculator v1.5 Instruction
+# CCaculator v1.6 Instruction
 
 <div style="display: flex; justify-content: space-between; padding: 0 30%;">
   <a href="./README.md">中文指南</a>
