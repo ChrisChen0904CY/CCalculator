@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 // 软件版本号
-#define CURRENT_VERSION "1.5.2"
+#define CURRENT_VERSION "1.6.0"
 
 #include <QApplication>
 #include <QScreen>
@@ -21,6 +21,7 @@
 #include <QActionGroup>
 #include <QDesktopServices>
 #include <QTimer>
+#include <QFileInfo>
 
 // SQL 数据库相关包的导入
 #include <QSqlDatabase>
@@ -40,6 +41,15 @@
 
 // 生成随机数
 #include <random>
+
+// 大数库
+#include "cbignum.h"
+
+// 设置页面
+#include "settingpage.h"
+
+// 结果展示页面
+#include "resultview.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -198,6 +208,31 @@ public slots:
     // 在光标后插入输入的数据或符号
     void insertInput(QString displayText, QString calculateText);
 
+    /* 长结果查看 */
+    // 初始化结果辅助查看按钮
+    void resAidInit();
+    // 初始化两个辅助按钮的QSS
+    void setResAidQSS();
+    // 隐藏两个辅助按钮
+    void hideResButtons();
+    // 显示两个辅助按钮
+    void showResButtons();
+    // 复制完整结果
+    void copy2Clipboard();
+    // 展示完整结果
+    void resultview_display();
+
+    /* 设置页面相关函数 */
+    void setting_display();
+    // 默认系统参数设置
+    void defaultSysParaSet();
+    // 初始化系统参数
+    void sysParameterInit();
+    // 应用系统参数
+    void sysParameterApply(QMap<QString, QString> sysParam);
+    // 单独更新一个系统参数
+    void sysParameterUpdate(QPair<QString, QString> param);
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
@@ -212,9 +247,22 @@ private:
     // 将显示文本转成易解析的文本
     QString formula_cal_text = "";
     // 计算结果
-    double result = 0.0;
+    CBigNum result = 0.0;
+    // 从文本提取出的数字
+    vector<CBigNum> num_vec = {};
     // 结果文本
     QString result_text = "";
+    // 结果完全展示按钮以及复制按钮
+    QPushButton* completeShowButton = NULL;
+    QPushButton* copyButton = NULL;
+    // 输出框上的辅助按钮布局
+    QVBoxLayout* resVLayout = NULL;
+    QHBoxLayout* resHLayout = NULL;
+    // 两个弹簧用以调整位置
+    QSpacerItem* resVspacer = NULL;
+    QSpacerItem* resHspacer = NULL;
+    // 结果完全展示页面
+    ResultView* resultView = NULL;
     // 解析字符对应的显示字符串
     QMap<QChar, QString> symbol_map = {{'0', "0"},
                                         {'1', "1"},
@@ -325,6 +373,21 @@ private:
     QTimer* cursorTimer = NULL;
     // 光标状态
     bool cursorDisplay = false;
+
+    /* 设置页面 */
+    SettingPage* settingPage = NULL;
+    // 系统参数
+    QString sysParameterFile = "./sysParameters.ini";
+    // 默认系统参数
+    QMap<QString, QString> defaultSysParameters = {{"precision", "8"},
+                                                   {"resDisplayMode", "SCI"},
+                                                   {"copyAll", "1"},
+                                                   {"suffixZero", "0"},
+                                                   {"ePower", "1"},
+                                                   {"PI", "3.14159265358979324"}};
+    QMap<QString, QString> sysParameters = {};
+    // 缓存的圆周率
+    CBigNum PI_Cached = defaultSysParameters["PI"].toStdString();
 };
 
 #endif // MAINWINDOW_H

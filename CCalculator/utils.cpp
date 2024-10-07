@@ -1,12 +1,9 @@
 #include "utils.h"
-#include <cmath>
-#include <algorithm>
 #include <ctime>
 #include <iomanip>
 #include <sstream>
 
-#define M_PI 3.14159265358979323846
-#define M_E  2.7182818284590452354
+CBigNum M_E("2.7182818284590452354");
 
 using namespace std;
 
@@ -35,73 +32,37 @@ bool is_num(char c)
     return ('0'<=c && c<='9');
 }
 
-double prod(double n) {
-    if (n-int(n) != 0) {
+CBigNum prod(CBigNum n) {
+    if (n-n.getInt() != 0) {
         throw "非整数不可用于阶乘运算！";
     }
-    int res = 1;
-    for (int i = 2; i <= n; i++) {
+    CBigNum res = 1;
+    for (CBigNum i = 2; i <= n; i++) {
         res *= i;
     }
-    return double(res);
+    return res;
 }
 
-double pprod(double n) {
-    if (n-int(n) != 0) {
+CBigNum pprod(CBigNum n) {
+    if (n-n.getInt() != 0) {
         throw "非整数不可用于阶乘运算！";
     }
-    if (int(n)==0) {
+    if (n.getInt()==0) {
         return 1.0;
     }
-    int res = (((int(n))&1)==0) ? 2 : 1;
-    for (int i = res+2; i <= n; i+=2) {
+    CBigNum res = (n.getInt()%2==0) ? 2 : 1;
+    for (auto i = res+2; i <= n; i+=2) {
         res *= i;
     }
-    return double(res);
+    return res;
 }
 
-double logx(double a, double b) {
-    // 真数和底数的定义域检验
-    if (a <= 0 || a == 1) {
-        throw "对数运算错误！底数必须为不是1的非负数！";
-    }
-    // 真数检验
-    if (b <= 0) {
-        throw "对数运算中真数必须为非负数！";
-    }
-    // 通过检验直接计算
-    return log(b)/log(a);
-}
-
-// ε --- 用于确定是否是 Pi 的整数倍
-double epsilon = 1e-10;
-
-double sinx(double x) {
-    if (fabs(x - M_PI*int(x/M_PI)) <= epsilon) {
-        return 0.0;
-    }
-    return sin(x);
-}
-
-double cosx(double x) {
-    if (fabs((x - M_PI/2) - M_PI*int((x - M_PI/2)/M_PI)) <= epsilon) {
-        return 0.0;
-    }
-    return sin(x);
-}
-
-double tanx(double x) {
-    if (fabs(x - M_PI*int(x/M_PI)) <= epsilon) {
-        return 0.0;
-    }
-    return tan(x);
-}
-
-string num_extract(string formula, vector<double>& vec)
+string num_extract(string formula, vector<CBigNum>& vec, long long bits)
 {
     string tmp = "";
     string processed_formula = "";
     int id = 0;
+    CBigNum tmp_num;
     for (auto c:formula) {
         if (is_num(c) || c=='.') {
             tmp += c;
@@ -109,12 +70,16 @@ string num_extract(string formula, vector<double>& vec)
         else {
             if (tmp.size() > 0) {
                 if (tmp == ".") {
-                    vec.push_back(0.0);
+                    tmp_num = 0;
+                    tmp_num.setResFracBits(bits);
+                    vec.push_back(tmp_num);
                     processed_formula += to_string(id++);
                     tmp = "";
                 }
                 else {
-                    vec.push_back(stod(tmp));
+                    tmp_num = tmp;
+                    tmp_num.setResFracBits(bits);
+                    vec.push_back(tmp_num);
                     processed_formula += to_string(id++);
                     tmp = "";
                 }
@@ -125,12 +90,16 @@ string num_extract(string formula, vector<double>& vec)
     // 尾处理
     if (tmp.size() > 0) {
         if (tmp == ".") {
-            vec.push_back(0.0);
+            tmp_num = 0;
+            tmp_num.setResFracBits(bits);
+            vec.push_back(tmp_num);
             processed_formula += to_string(id++);
             tmp = "";
         }
         else {
-            vec.push_back(stod(tmp));
+            tmp_num = tmp;
+            tmp_num.setResFracBits(bits);
+            vec.push_back(tmp_num);
             processed_formula += to_string(id++);
             tmp = "";
         }
@@ -138,34 +107,31 @@ string num_extract(string formula, vector<double>& vec)
     return processed_formula;
 }
 
-void vec_display(vector<double> vec)
-{
-    for (auto num:vec) {
-        cout << num << endl;
-    }
-}
-
 // 计算函数
-double compute(string formula, vector<double> &num_vec, bool rad)
+CBigNum compute(string formula, vector<CBigNum> &num_vec, CBigNum &PI_Cached,
+                bool rad,
+                long long bits)
 {
     // 空表达式
     if (formula.size() == 0) {
         throw "空表达式！";
     }
     // 单操作栈
-    stack<double> nums;
+    stack<CBigNum> nums;
     stack<char> ops;
     // 左括号位置栈
     stack<int> bracket_pos;
     // 数字存储下标串
     string tmp = "";
     // 计算结果
-    double res = 0;
+    CBigNum res = 0;
+
+    CBigNum cal_PI = 0;
 
     // 扫描公式字符串并处理连续放置的数字
     // 连续数字长度
-    int continus_nums_len = 0;
-    for (int i = 0; i < formula.size(); i++) {
+    long long continus_nums_len = 0;
+    for (long long i = 0; i < formula.size(); i++) {
         // 若当前位置是右括号 则弹出栈顶左括号位置 进行截取计算入栈
         if (formula[i] == ')') {
             // 栈空报错
@@ -178,7 +144,7 @@ double compute(string formula, vector<double> &num_vec, bool rad)
             }
             // 将连续数字相乘处理
             if (continus_nums_len > 1) {
-                double prods = 1;
+                CBigNum prods = 1;
                 while (continus_nums_len > 0) {
                     continus_nums_len--;
                     prods *= nums.top();
@@ -197,49 +163,49 @@ double compute(string formula, vector<double> &num_vec, bool rad)
                                                 i-bracket_pos.top()-1);
 
             // 将括号内内容计算入数字栈
-            double cur_res = compute(sub_formula, num_vec, rad);
+            CBigNum cur_res = compute(sub_formula, num_vec, PI_Cached, rad, bits);
             // 判断是否需要进行函数操作
             if (bracket_pos.top() > 0) {
                 // sin
                 if (formula[bracket_pos.top()-1] == 'S') {
                     if (!rad) {
-                        cur_res = cur_res/180*M_PI;
+                        cur_res = cur_res/180*PI;
                     }
-                    cur_res = sinx(cur_res);
+                    cur_res = sin(cur_res);
                 }
                 // arcsin
                 else if (formula[bracket_pos.top()-1] == 's') {
-                    cur_res = asin(cur_res);
+                    cur_res = asin(cur_res, PI_Cached);
                     if (!rad) {
-                        cur_res = cur_res*180/M_PI;
+                        cur_res = cur_res*180/PI;
                     }
                 }
                 // cos
                 else if (formula[bracket_pos.top()-1] == 'C') {
                     if (!rad) {
-                        cur_res = cur_res/180*M_PI;
+                        cur_res = cur_res/180*PI;
                     }
-                    cur_res = cosx(cur_res);
+                    cur_res = cos(cur_res);
                 }
                 // arccos
                 else if (formula[bracket_pos.top()-1] == 'c') {
-                    cur_res = acos(cur_res);
+                    cur_res = acos(cur_res, PI_Cached);
                     if (!rad) {
-                        cur_res = cur_res*180/M_PI;
+                        cur_res = cur_res*180/PI;
                     }
                 }
                 // tan
                 else if (formula[bracket_pos.top()-1] == 'T') {
                     if (!rad) {
-                        cur_res = cur_res/180*M_PI;
+                        cur_res = cur_res/180*PI;
                     }
-                    cur_res = tanx(cur_res);
+                    cur_res = tan(cur_res);
                 }
                 // arctan
                 else if (formula[bracket_pos.top()-1] == 't') {
-                    cur_res = atan(cur_res);
+                    cur_res = atan(cur_res, PI_Cached);
                     if (!rad) {
-                        cur_res = cur_res*180/M_PI;
+                        cur_res = cur_res*180/PI;
                     }
                 }
                 // ln
@@ -248,7 +214,7 @@ double compute(string formula, vector<double> &num_vec, bool rad)
                     if (cur_res <= 0) {
                         throw "对数运算中真数必须为非负数！";
                     }
-                    cur_res = log(cur_res);
+                    cur_res = ln(cur_res);
                 }
             }
             // 结果入数字栈
@@ -265,7 +231,17 @@ double compute(string formula, vector<double> &num_vec, bool rad)
         // 特殊数字入栈
         else if (formula[i] == 'P') {
             if (bracket_pos.empty()) {
-                nums.push(M_PI);
+                if(cal_PI == 0) {
+                    if (PI_Cached.getFracs().size() < bits) {
+                        cal_PI = PI_Calculate(bits);
+                        PI_Cached = cal_PI;
+                    }
+                    else {
+                        cal_PI = PI_Cached;
+                        cal_PI.round(bits);
+                    }
+                }
+                nums.push(cal_PI);
                 continus_nums_len++;
             }
         }
@@ -298,7 +274,7 @@ double compute(string formula, vector<double> &num_vec, bool rad)
                 ops.push(formula[i]);
                 // 将连续数字相乘处理
                 if (continus_nums_len > 1) {
-                    double prods = 1;
+                    CBigNum prods = 1;
                     while (continus_nums_len > 0) {
                         continus_nums_len--;
                         prods *= nums.top();
@@ -321,7 +297,7 @@ double compute(string formula, vector<double> &num_vec, bool rad)
     }
     // 将连续数字相乘处理
     if (continus_nums_len > 1) {
-        double prods = 1;
+        CBigNum prods = 1;
         while (continus_nums_len > 0) {
             continus_nums_len--;
             prods *= nums.top();
@@ -347,14 +323,14 @@ double compute(string formula, vector<double> &num_vec, bool rad)
 
     // 处理特殊操作符 --- ^, !, !!, %, l
     vector<char> nos_ops = {};
-    vector<double> nos_num = {};
+    vector<CBigNum> nos_num = {};
     while (!ops.empty()) {
         // !!
         if (ops.top() == '@') {
             if (nums.empty()) {
                 throw "非法表达式！";
             }
-            double tmp = pprod(nums.top());
+            CBigNum tmp = pprod(nums.top());
             nums.pop();
             nums.push(tmp);
         }
@@ -363,7 +339,7 @@ double compute(string formula, vector<double> &num_vec, bool rad)
             if (nums.empty()) {
                 throw "非法表达式！";
             }
-            double tmp = prod(nums.top());
+            CBigNum tmp = prod(nums.top());
             nums.pop();
             nums.push(tmp);
         }
@@ -372,7 +348,7 @@ double compute(string formula, vector<double> &num_vec, bool rad)
             if (nums.empty()) {
                 throw "非法表达式！";
             }
-            double tmp = nums.top();
+            CBigNum tmp = nums.top();
             nums.pop();
             if (nums.empty()) {
                 throw "非法表达式！";
@@ -386,12 +362,12 @@ double compute(string formula, vector<double> &num_vec, bool rad)
             if (nums.empty()) {
                 throw "非法表达式！";
             }
-            double tmp = nums.top();
+            CBigNum tmp = nums.top();
             nums.pop();
             if (nums.empty()) {
                 throw "非法表达式！";
             }
-            tmp = logx(nums.top(), tmp);
+            tmp = log(nums.top(), tmp);
             nums.pop();
             nums.push(tmp);
         }
@@ -400,7 +376,7 @@ double compute(string formula, vector<double> &num_vec, bool rad)
             if (nums.empty()) {
                 throw "非法表达式！";
             }
-            double tmp = nums.top()*0.01;
+            CBigNum tmp = nums.top()*0.01;
             nums.pop();
             nums.push(tmp);
         }
@@ -421,12 +397,12 @@ double compute(string formula, vector<double> &num_vec, bool rad)
 
     // 将处理后的数字和操作符入栈
     if (!nos_num.empty()) {
-        for (int i = nos_num.size()-1; i >= 0; i--) {
+        for (long long i = nos_num.size()-1; i >= 0; i--) {
             nums.push(nos_num[i]);
         }
     }
     if (!nos_ops.empty()) {
-        for (int i = nos_ops.size()-1; i >= 0; i--) {
+        for (long long i = nos_ops.size()-1; i >= 0; i--) {
             ops.push(nos_ops[i]);
         }
     }
@@ -447,12 +423,12 @@ double compute(string formula, vector<double> &num_vec, bool rad)
     nos_ops = {};
     // 临时操作栈 & 临时数字数栈
     stack<bool> tmp_ops;
-    stack<double> tmp_nums;
+    stack<CBigNum> tmp_nums;
 
     while (!ops.empty()) {
         // 遇到乘除就进行特殊处理
         if (ops.top() == '*' || ops.top() == '/') {
-            double tmp_res = 1;
+            CBigNum tmp_res = 1;
             // 先将连续高级运算部分反向入栈恢复正序
             while (!ops.empty() && (ops.top() == '*' || ops.top() == '/')) {
                 if (nums.empty()) {
@@ -501,12 +477,12 @@ double compute(string formula, vector<double> &num_vec, bool rad)
 
     // 将处理后的数字和操作符入栈
     if (!nos_num.empty()) {
-        for (int i = nos_num.size()-1; i >= 0; i--) {
+        for (long long i = nos_num.size()-1; i >= 0; i--) {
             nums.push(nos_num[i]);
         }
     }
     if (!nos_ops.empty()) {
-        for (int i = nos_ops.size()-1; i >= 0; i--) {
+        for (long long i = nos_ops.size()-1; i >= 0; i--) {
             ops.push(nos_ops[i]);
         }
     }
@@ -531,17 +507,17 @@ double compute(string formula, vector<double> &num_vec, bool rad)
             ops.pop();
         }
         else {
-            double num1 = nums.top();
+            CBigNum num1 = nums.top();
             nums.pop();
             ops.pop();
             if (nums.empty()) {
                 throw "非法表达式！";
             }
             if (ops.empty() || ops.top() == '+') {
-                res += fmod(nums.top(), num1);
+                res += nums.top() % num1;
             }
             else {
-                res -= fmod(nums.top(), num1);
+                res -= nums.top() % num1;
             }
             nums.pop();
             // 弹出前面的加减符号
@@ -603,7 +579,7 @@ string beautiful_double_string(string s) {
     // 重置冗余0标志
     residual_zero = true;
     // 反向处理小数部分
-    for (int i = s.size()-1; i >= 0; i--) {
+    for (long long i = s.size()-1; i >= 0; i--) {
         // 遇到小数点就溜了
         if (s[i] == '.') {
             break;
@@ -660,7 +636,7 @@ int main()
         if (formula == "exit") {
             break;
         }
-        vector<double> num_vec = {};
+        vector<CBigNum> num_vec = {};
         processed_formula = num_extract(formula, num_vec);
         try{
             cout << formula << " = " << compute(processed_formula, num_vec, true) << endl;

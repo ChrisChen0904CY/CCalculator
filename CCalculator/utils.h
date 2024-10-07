@@ -6,6 +6,10 @@
 #include <stack>
 #include <iostream>
 
+// 大数及大数科学计算库
+#include "cbignum.h"
+#include "cbigmath.h"
+
 using namespace std;
 
 string getCurrentTimestamp();
@@ -25,15 +29,12 @@ void stack_display(stack<T>& s) {
 }
 
 bool is_num(char c);
-double prod(double n);
-double pprod(double n);
-double logx(double a, double b);
-double sinx(double x);
-double cosx(double x);
-double tanx(double x);
-string num_extract(string formula, vector<double>& vec);
-void vec_display(vector<double> vec);
-double compute(string formula, vector<double> &num_vec, bool rad=true);
+CBigNum prod(CBigNum n);
+CBigNum pprod(CBigNum n);
+string num_extract(string formula, vector<CBigNum>& vec, long long bits);
+CBigNum compute(string formula, vector<CBigNum> &num_vec, CBigNum &PI_Cached,
+                bool rad=true,
+                long long bits = 8);
 string beautiful_double_string(string s);
 
 #endif // UTILS_H

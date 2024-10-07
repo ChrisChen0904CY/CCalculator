@@ -28,5 +28,10 @@
         <file>rcs/help_2_3.png</file>
         <file>rcs/help_2_4.png</file>
         <file>rcs/help_2_5.png</file>
+        <file>rcs/search.png</file>
+        <file>rcs/copy.png</file>
+        <file>rcs/done.png</file>
+        <file>rcs/out_view.png</file>
+        <file>rcs/save_file.png</file>
     </qresource>
 </RCC>

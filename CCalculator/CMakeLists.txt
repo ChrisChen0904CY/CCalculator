@@ -36,6 +36,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         aboutpagelite.h aboutpagelite.cpp
         helpdialog.h helpdialog.cpp helpdialog.ui
         clickablelabelfilter.h clickablelabelfilter.cpp
+        cbigmath.cpp cbigmath.h cbignum.cpp cbignum.h
+        settingpage.h settingpage.cpp settingpage.ui
+        precisionpage.h precisionpage.cpp precisionpage.ui
+        resdisplaypage.h resdisplaypage.cpp resdisplaypage.ui
+        resultview.h resultview.cpp resultview.ui
 
     )
 # Define target properties for Android with Qt 6 as:

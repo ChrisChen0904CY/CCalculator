@@ -15,8 +15,6 @@
 // 数据库
 QSqlDatabase db;
 
-vector<double> num_vec;
-
 MainWindow::MainWindow(QWidget *parent, bool lite)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -28,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent, bool lite)
     this->ui->label_3->installEventFilter(logoFilter);
     // 初始化辅助显示框
     aidInit();
+    // 初始化结果辅助显示按钮
+    resAidInit();
     // 将软件主窗口标题后缀加上版本号
     this->setWindowTitle("CCalculator v"+this->current_version);
     // 检查初始化文件
@@ -65,6 +65,9 @@ MainWindow::MainWindow(QWidget *parent, bool lite)
     // 初始化光标控制计时器
     cursorTimerInit();
 
+    // 初始化系统参数
+    sysParameterInit();
+
     // 初始化完成发射信号
     // emit initFinished();
 }
@@ -87,6 +90,14 @@ void MainWindow::closeEvent(QCloseEvent *event)
     // 关闭打开了的 Help 窗口
     if (this->helpPage) {
         this->helpPage->close();
+    }
+    // 关闭打开了的 Setting 窗口
+    if (this->settingPage) {
+        this->settingPage->close();
+    }
+    // 关闭打开了的 ResultView 窗口
+    if (this->resultView != NULL) {
+        this->resultView->close();
     }
     QMainWindow::closeEvent(event);
 }
@@ -439,6 +450,12 @@ void MainWindow::slots_connected()
             &ClickableLabelFilter::labelClicked,
             this,
             &MainWindow::logoClicked);
+
+    /* 打开设置页面 */
+    connect(this->ui->actionSystem_Settings,
+            &QAction::triggered,
+            this,
+            &MainWindow::setting_display);
 }
 
 // 输入算式显示
@@ -453,7 +470,89 @@ void MainWindow::formula_display()
 // 结果显示
 void MainWindow::result_display()
 {
-    this->ui->label_2->setText(QString("%1").arg(this->result));
+    // 补齐尾缀零
+    if(sysParameters["suffixZero"] == "1") {
+        std::vector<char> newFrac = result.getFracs();
+        for(auto i = 0; i < result.getResFracBits()-result.getFracs().size(); i++) {
+            newFrac.push_back('0');
+        }
+        result.setFracs(newFrac);
+    }
+    else {
+        result.zeroClear();
+    }
+    // 普通显示模式
+    if (sysParameters["resDisplayMode"] == "Normal") {
+        this->ui->label_2->setText(QString::fromStdString(this->result.to_str()));
+    }
+    else {
+        // 整数+小数小于9位就直接显示
+        if(this->result.getInts().size()+this->result.getFracs().size() < 9) {
+            this->ui->label_2->setText(QString::fromStdString(this->result.to_str()));
+        }
+        // 否则显示为带八位小数的科学计数法并使能完整查看按钮
+        else {
+            string sciDisplay = "";
+            // 先获取符号
+            sciDisplay += this->result.getPositive() ? "+" : "-";
+            // 如果是当前结果是小数
+            if(abs(this->result) < 1) {
+                long long zeros = 0;
+                // 寻找小数中首个非零数字
+                for(auto i = 0; i < this->result.getFracs().size(); i++) {
+                    if(this->result.getFracs()[i] != '0') {
+                        sciDisplay += this->result.getFracs()[i];
+                        sciDisplay += '.';
+                        for(auto j = i; j < ((i+9 < this->result.getFracs().size()) ? 9 : this->result.getFracs().size()); j++) {
+                            sciDisplay += this->result.getFracs()[j];
+                        }
+                        sciDisplay += (sysParameters["ePower"]=="1" ? "E-" : "×10^(-")+to_string(zeros+1);
+                        if(sysParameters["ePower"]=="0") {
+                            sciDisplay += ")";
+                        }
+                        break;
+                    }
+                    zeros++;
+                }
+                if(sciDisplay.empty()) {
+                    sciDisplay = "0";
+                }
+            }
+            // 否则从整数部分开始截获内容
+            else {
+                sciDisplay += this->result.getInts()[0];
+                sciDisplay += '.';
+                for(auto i = 1; i < this->result.getInts().size(); i++) {
+                    sciDisplay += this->result.getInts()[i];
+                    if (sciDisplay.length() >= 11) {
+                        break;
+                    }
+                }
+                for(auto i = 0; i < this->result.getFracs().size(); i++) {
+                    if (sciDisplay.length() >= 11) {
+                        break;
+                    }
+                    sciDisplay += this->result.getFracs()[i];
+                }
+                if(this->result.getInts().size() > 1) {
+                    sciDisplay += sysParameters["ePower"]=="1" ? "E+" : "×10^(+";
+                    sciDisplay += to_string(this->result.getInts().size()-1);
+                    if(sysParameters["ePower"]=="0") {
+                        sciDisplay += ")";
+                    }
+                }
+            }
+            // 更新到显示框
+            this->ui->label_2->setText(QString::fromStdString(sciDisplay));
+        }
+    }
+    // 对长结果使能辅助查看按钮
+    if(this->result.getInts().size()+this->result.getFracs().size() >= 9) {
+        this->showResButtons();
+    }
+    else {
+        this->hideResButtons();
+    }
     // 将光标归于表达式的末尾
     currentCursor.first = this->formula_text.size();
     currentCursor.second = this->formula_cal_text.size();
@@ -734,7 +833,8 @@ void MainWindow::equal_clicked()
 
     // 解析算式并显示计算结果
     string processed_formula = num_extract(this->formula_cal_text.toStdString(),
-                                           num_vec);
+                                           num_vec,
+                                           sysParameters["precision"].toLongLong());
 
     // 连续操作符检验
     // 当前连续操作符数
@@ -769,16 +869,12 @@ void MainWindow::equal_clicked()
     }
 
     try {
-        this->result = double(compute(processed_formula,
-                                      num_vec,
-                                      this->rad));
-        // 如果result是 inf 或 -inf
-        if (_finite(result) == 0) {
-            QMessageBox::critical(this, "超出计算范围",
-                                  "您要计算的数据太大啦！我无能为力！");
-            return;
-        }
-        this->result_text = QString("%1").arg(this->result);
+        this->result = compute(processed_formula,
+                               num_vec,
+                               this->PI_Cached,
+                               this->rad,
+                               this->sysParameters["precision"].toLongLong());
+        this->result_text = QString::fromStdString(this->result.to_str());
         // 输入非空时结果写入数据库
         if (this->formula_text.size() > 0) {
             write2database();
@@ -800,6 +896,10 @@ void MainWindow::equal_clicked()
                 // 打开当前所在页面
                 this->history_view->page_load();
             }
+        }
+        // 更新圆周率
+        if(PI_Cached.getFracs().size()+2 > this->sysParameters["PI"].size()) {
+            sysParameterUpdate({"PI", QString::fromStdString(PI_Cached.to_str())});
         }
         this->result_display();
     }
@@ -838,6 +938,14 @@ void MainWindow::equal_clicked()
             QMessageBox::critical(this, "对数运算错误",
                                   "对数运算错误！底数必须为不是1的非负数！");
         }
+        else if (errorMsg == "Out of the domain of definition when compute asin().") {
+            QMessageBox::critical(this, "反正弦函数运算错误",
+                                  "asin运算错误！定义域为[-1, 1]！");
+        }
+        else if (errorMsg == "Out of the domain of definition when compute acos().") {
+            QMessageBox::critical(this, "反余弦函数运算错误",
+                                  "acos运算错误！定义域为[-1, 1]！");
+        }
         else {
             QMessageBox::critical(this, "未知错误",
                                   "我也不知道发生了啥！！！");
@@ -852,7 +960,8 @@ void MainWindow::check_clicked()
     num_vec = {};
     // 获取当前公式串转为 std::string 进行解析
     string s = num_extract(this->formula_cal_text.toStdString(),
-                           num_vec);
+                           num_vec,
+                           sysParameters["precision"].toLongLong());
 
     // 记录需要标红的字符位置
     vector<bool> wrong_pos(s.size(), false);
@@ -928,7 +1037,7 @@ void MainWindow::check_clicked()
                 if (wrong_nums[num_id_int]) {
                     ss += "<font color='red'>";
                 }
-                ss += beautiful_double_string(to_string(num_vec[num_id_int]));
+                ss += beautiful_double_string(num_vec[num_id_int].to_str());
                 if (wrong_nums[num_id_int]) {
                     ss += "</font>";
                 }
@@ -943,7 +1052,7 @@ void MainWindow::check_clicked()
                 if (wrong_nums[num_id_int]) {
                     ss += "<font color='red'>";
                 }
-                ss += beautiful_double_string(to_string(num_vec[num_id_int]));
+                ss += beautiful_double_string(num_vec[num_id_int].to_str());
                 if (wrong_nums[num_id_int]) {
                     ss += "</font>";
                 }
@@ -1020,7 +1129,7 @@ void MainWindow::check_clicked()
 void MainWindow::ans_clicked()
 {
     // 将结果解析为 QString
-    QString qres = QString("%1").arg(this->result);
+    QString qres = QString::fromStdString(this->result.to_str());
 
     // 处理科学计数法
     int e_ind = qres.indexOf('e');
@@ -1479,7 +1588,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
             if (isFunctionSymbol(previousChar)) {
                 // 是的话则需要跳过他到下一个左边的字符
                 // 首先判断计算式左边的左边是否还有冗余 没有就不能动了
-                if (currentCursor.second-3 > 0) {
+                if (currentCursor.second-3 >= 0) {
                     // 直接将计算式位置移到左边的左边
                     currentCursor.second -= 2;
                     // 接着将显示式的光标位置先左移一格再左移该函数的长度
@@ -1601,6 +1710,11 @@ void MainWindow::ini_check() {
     if (!int_file.isFile()) {
         change_ini_style("Light");
     }
+    QFileInfo sys_int_file(this->sysParameterFile);
+    // 不存在就新建一个默认的ini文件
+    if (!sys_int_file.isFile()) {
+        this->defaultSysParaSet();
+    }
 }
 
 QString MainWindow::getAidQSS() {
@@ -1649,6 +1763,7 @@ void MainWindow::aidInit() {
     aidVLayout->addSpacerItem(vspacer);
     aidVLayout->setStretch(0, 1);
     aidVLayout->setStretch(1, 10);
+    aidVLayout->setContentsMargins(0, 0, 0, 0);
 
     // 绑定给输入框
     this->ui->label->setLayout(aidVLayout);
@@ -1821,6 +1936,15 @@ void MainWindow::updateLabel() {
                                                           this->formula_text.size()-currentCursor.first-cursorLength+1);
                 }
             }
+            // 其他左括号也正常处理
+            else {
+                formulaText = formulaText.mid(0, currentCursor.first-1) + "<u>" \
+                              + currentFocusText + "</u>";
+                if (currentCursor.first+cursorLength-1 < this->formula_text.size()) {
+                    formulaText += this->formula_text.mid(currentCursor.first+cursorLength-1,
+                                                          this->formula_text.size()-currentCursor.first-cursorLength+1);
+                }
+            }
         }
         // 其他情况正常按照对应长度显示即可
         else {
@@ -1879,4 +2003,188 @@ void MainWindow::insertInput(QString displayText, QString calculateText) {
 
     // 刷新显示框
     formula_display();
+}
+
+/* 长结果查看 */
+// 初始化结果辅助查看按钮
+void MainWindow::resAidInit() {
+    // 将辅助按钮和水平弹簧加入水平布局并调整尺度
+    resHLayout = new QHBoxLayout();
+    completeShowButton = new QPushButton(this);
+    completeShowButton->setContentsMargins(0, 0, 0, 0);
+    copyButton = new QPushButton(this);
+    copyButton->setContentsMargins(0, 0, 0, 0);
+    setResAidQSS();
+    hspacer = new QSpacerItem(20, 10, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    resHLayout->addSpacerItem(hspacer);
+    resHLayout->addWidget(copyButton);
+    resHLayout->addWidget(completeShowButton);
+    resHLayout->setStretch(0, 30);
+    resHLayout->setStretch(1, 3);
+    resHLayout->setStretch(2, 3);
+    resHLayout->setAlignment(Qt::AlignTop | Qt::AlignRight);
+    resHLayout->setContentsMargins(0, 0, 0, 0);
+
+    // 定义一个垂直布局并向其中添加水平布局和垂直弹簧
+    resVLayout = new QVBoxLayout(this->ui->label_2);
+    resVspacer = new QSpacerItem(20, 60, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    resVLayout->addLayout(resHLayout);
+    resVLayout->addSpacerItem(resVspacer);
+    resVLayout->setStretch(0, 1);
+    resVLayout->setStretch(1, 10);
+    resVLayout->setContentsMargins(0, 0, 0, 0);
+
+    // 绑定给输出框
+    this->ui->label_2->setLayout(resVLayout);
+
+    // 打开完整结果页面
+    connect(this->completeShowButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::resultview_display);
+
+    // 隐藏两个按钮
+    hideResButtons();
+}
+
+// 隐藏两个辅助按钮
+void MainWindow::hideResButtons() {
+    completeShowButton->setVisible(false);
+    copyButton->setVisible(false);
+}
+
+// 显示两个辅助按钮
+void MainWindow::showResButtons() {
+    // 完整结果复制
+    connect(this->copyButton,
+            &QPushButton::clicked,
+            this,
+            &MainWindow::copy2Clipboard);
+    copyButton->setIcon(QIcon(":/rcs/copy.png"));
+    // 显示按钮
+    completeShowButton->setVisible(true);
+    copyButton->setVisible(true);
+}
+
+// 初始化两个辅助按钮的QSS
+void MainWindow::setResAidQSS() {
+    QVector<QPushButton*> buts = {completeShowButton, copyButton};
+    for(auto but:buts) {
+        but->setFixedSize(20, 20);
+        but->setCursor(Qt::PointingHandCursor);
+        but->setStyleSheet("QPushButton {"
+                           "background-color: white;"
+                           "border: 1px solid black;"
+                           "border-radius: 4px;"
+                           "}"
+                           "QPushButton:hover {"
+                           "background-color: lightgrey;"
+                           "}");
+    }
+    // 设置 Icon
+    copyButton->setIcon(QIcon(":/rcs/copy.png"));
+    completeShowButton->setIcon(QIcon(":/rcs/out_view.png"));
+}
+
+// 展示完整结果
+void MainWindow::resultview_display() {
+    // 防止重复打开
+    if (this->resultView != NULL) {
+        this->resultView->close();
+    }
+    // 构造窗口
+    this->resultView = new ResultView(nullptr, QString::fromStdString(this->result.to_str()),
+                                      sysParameters["savePath"]);
+    // 移动到屏幕中间
+    move_to_center(this->resultView);
+    // 显示
+    this->resultView->show();
+}
+
+/* 设置页面相关函数 */
+void MainWindow::setting_display() {
+    // 防止重复打开
+    if (this->settingPage != NULL) {
+        this->settingPage->close();
+    }
+    // 构造窗口
+    this->settingPage = new SettingPage(nullptr, this->sysParameters);
+    // 应用系统参数
+    connect(this->settingPage,
+            &SettingPage::sysParaChanged,
+            this,
+            &MainWindow::sysParameterApply);
+    // 移动到屏幕中间
+    move_to_center(this->settingPage);
+    // 显示
+    this->settingPage->show();
+}
+
+// 默认系统参数设置
+void MainWindow::defaultSysParaSet() {
+    // 打开文件并指定为ini格式
+    QSettings*  m_IniFile = new QSettings(this->sysParameterFile, QSettings::IniFormat);
+
+    for(auto it = defaultSysParameters.constBegin(); it != defaultSysParameters.constEnd(); ++it) {
+        this->sysParameters[it.key()] = it.value();
+        m_IniFile->setValue("sysParam/"+it.key(), it.value());
+    }
+
+    // 读入默认圆周率
+    PI_Cached = CBigNum(sysParameters["PI"].toStdString());
+
+    delete m_IniFile;
+}
+
+// 初始化系统参数
+void MainWindow::sysParameterInit() {
+    // 打开文件并指定为ini格式
+    QSettings*  m_IniFile = new QSettings(this->sysParameterFile, QSettings::IniFormat);
+
+    for(auto it = defaultSysParameters.constBegin(); it != defaultSysParameters.constEnd(); it++) {
+        try {
+            sysParameters[it.key()] = m_IniFile->value("sysParam/"+it.key()).toString();
+        }
+        catch(const char* msg) {
+            qDebug() << msg;
+            defaultSysParaSet();
+        }
+        if(sysParameters[it.key()]=="") {
+            sysParameters[it.key()] = it.value();
+        }
+    }
+
+    // 读入缓存圆周率
+    PI_Cached = CBigNum(sysParameters["PI"].toStdString());
+
+    delete m_IniFile;
+}
+
+// 应用系统参数
+void MainWindow::sysParameterApply(QMap<QString, QString> sysParam) {
+    sysParameters = sysParam;
+    // 更新初始化系统参数文件
+    QSettings*  m_IniFile = new QSettings(this->sysParameterFile, QSettings::IniFormat);
+    for (auto it = sysParam.constBegin(); it != sysParam.constEnd(); ++it) {
+        m_IniFile->setValue("sysParam/" + it.key(), it.value());
+    }
+    delete m_IniFile;
+}
+
+// 单独更新一个系统参数
+void MainWindow::sysParameterUpdate(QPair<QString, QString> param) {
+    sysParameters[param.first] = param.second;
+    // 更新初始化系统参数文件
+    QSettings*  m_IniFile = new QSettings(this->sysParameterFile, QSettings::IniFormat);
+    m_IniFile->setValue("sysParam/" + param.first, param.second);
+    delete m_IniFile;
+}
+
+// 复制完整结果
+void MainWindow::copy2Clipboard() {
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(QString::fromStdString(this->result.to_str()));
+    // 复制成功后防止重复复制
+    copyButton->setIcon(QIcon(":/rcs/done.png"));
+    copyButton->disconnect();
 }
