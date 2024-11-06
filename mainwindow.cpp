@@ -511,7 +511,7 @@ void MainWindow::result_display()
                     if(this->result.getFracs()[i] != '0') {
                         sciDisplay += this->result.getFracs()[i];
                         sciDisplay += '.';
-                        for(auto j = i; j < ((i+9 < this->result.getFracs().size()) ? 9 : this->result.getFracs().size()); j++) {
+                        for(auto j = i+1; j < ((i+9 < this->result.getFracs().size()) ? 9 : this->result.getFracs().size()); j++) {
                             sciDisplay += this->result.getFracs()[j];
                         }
                         sciDisplay += (sysParameters["ePower"]=="1" ? "E-" : "×10^(-")+to_string(zeros+1);
@@ -877,11 +877,16 @@ void MainWindow::equal_clicked()
     }
 
     try {
+        QElapsedTimer timer;
+        timer.start();
         this->result = compute(processed_formula,
                                num_vec,
                                this->PI_Cached,
                                this->rad,
                                this->sysParameters["precision"].toLongLong());
+        // 获取计算耗时
+        qint64 elapsedTime = timer.elapsed();
+        qDebug() << "计算用时:" << elapsedTime << "ms";
         this->result_text = QString::fromStdString(this->result.to_str());
         // 输入非空时结果写入数据库
         if (this->formula_text.size() > 0) {
