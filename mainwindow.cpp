@@ -481,10 +481,12 @@ void MainWindow::result_display()
     // 补齐尾缀零
     if(sysParameters["suffixZero"] == "1") {
         std::vector<char> newFrac = result.getFracs();
-        for(auto i = 0; i < result.getResFracBits()-result.getFracs().size(); i++) {
-            newFrac.push_back('0');
+        if(result.getResFracBits() > result.getFracs().size()) {
+            for(auto i = 0; i < result.getResFracBits()-result.getFracs().size(); i++) {
+                newFrac.push_back('0');
+            }
+            result.setFracs(newFrac);
         }
-        result.setFracs(newFrac);
     }
     else {
         result.zeroClear();
