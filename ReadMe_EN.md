@@ -1,4 +1,4 @@
-# CCaculator v1.6 Instruction
+# CCaculator v1.7 Instruction
 
 <div style="display: flex; justify-content: space-between; padding: 0 30%;">
   <a href="./README.md">中文指南</a>
@@ -19,13 +19,13 @@
 - The normal calculation mode looks like this:
 
 <div style="text-align: center;"> 
-	<img src="https://pic.imgdb.cn/item/66875f1bd9c307b7e92ac000.png" alt="Normal Calculation Mode Preview">
+	<img src="./display1.png" alt="Normal Calculation Mode Preview">
 </div>
 
 - The scientific calculation mode looks like this:
 
 <div style="text-align: center;"> 
-	<img src="https://pic.imgdb.cn/item/66875f3fd9c307b7e92af696.png" alt="Scientific Calculation Mode Preview">
+	<img src="./display2.png" alt="Scientific Calculation Mode Preview">
 </div>
 
 - For more specific feature demonstration videos, see the following link:
