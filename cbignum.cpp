@@ -57,6 +57,14 @@ CBigNum CBigNum::getFrac() const {
 	return CBigNum({}, this->fracs);
 }
 
+void CBigNum::pushInt(char a) {
+    this->ints.push_back(a);
+}
+
+void CBigNum::pushFrac(char a) {
+    this->fracs.push_back(a);
+}
+
 void CBigNum::round(long long bits) {
 	if (this->fracs.size() <= bits) {
 		return;

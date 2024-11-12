@@ -83,6 +83,8 @@ public:
 	void setPositive(bool p);
 	void setInts(vector<char> newInts);
 	void setFracs(vector<char> newFracs);
+    void pushInt(char a);
+    void pushFrac(char a);
 	
 	/**
 	* @Breif: Aid functions
@@ -269,5 +271,25 @@ private:
 
 // abs Function
 CBigNum abs(const CBigNum& num);
+
+/**
+* @Brief: Greatest Common Divisor
+* @Author: Chris Chan
+* @Date: 2024/11/12
+*/
+template <typename T>
+CBigNum gcd(const CBigNum& a, const T& b) {
+    CBigNum x = abs(a);
+    CBigNum y = abs(CBigNum(b));
+    // Return 0 while not both of the numbers are integers
+    if(!x.getFracs().empty() || !y.getFracs().empty()) {
+        return CBigNum(0);
+    }
+    // Apply Euclidean Algorithm
+    if (y == 0) {
+        return x;
+    }
+    return gcd(y, x%y);
+}
 
 #endif

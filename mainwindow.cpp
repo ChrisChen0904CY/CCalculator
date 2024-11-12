@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent, bool lite)
     , liteVersion(lite)
 {
     ui->setupUi(this);
+    qDebug() << fdivision(CBigNum(1), 123597).to_str();
+    // 优化输入框的显示
+    this->ui->label->setAlignment(Qt::AlignRight | Qt::AlignBottom);
     // 为 Logo 标签绑上点击事件
     logoFilter = new ClickableLabelFilter(this);
     this->ui->label_3->installEventFilter(logoFilter);
@@ -885,7 +888,8 @@ void MainWindow::equal_clicked()
                                num_vec,
                                this->PI_Cached,
                                this->rad,
-                               this->sysParameters["precision"].toLongLong());
+                               this->sysParameters["precision"].toLongLong(),
+                               this->sysParameters["fd"]=="1");
         // 获取计算耗时
         qint64 elapsedTime = timer.elapsed();
         qDebug() << "计算用时:" << elapsedTime << "ms";
