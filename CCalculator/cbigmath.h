@@ -85,7 +85,7 @@ CBigNum fdivision(const CBigNum& a, const T& b) {
         num1 = res.second << 1;
         short tmp = 0;
         vector<char> repeats;
-        while(repeats.size() < tens.getInts().size()) {
+        while(repeats.size() < tens.getInts().size()-1) {
             if (num1 < num2) {
                 num1 <<= 1;
                 res.first.pushFrac('0'+tmp%10);

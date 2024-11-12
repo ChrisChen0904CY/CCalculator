@@ -21,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent, bool lite)
     , liteVersion(lite)
 {
     ui->setupUi(this);
-    qDebug() << fdivision(CBigNum(1), 123597).to_str();
     // 优化输入框的显示
     this->ui->label->setAlignment(Qt::AlignRight | Qt::AlignBottom);
     // 为 Logo 标签绑上点击事件
