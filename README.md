@@ -1,4 +1,4 @@
-# CCaculator v1.6 使用指南
+# CCaculator v1.7 使用指南
 
 <div style="display: flex; justify-content: space-between; padding: 0 30%;">
   <a href="./README.md">中文指南</a>
@@ -19,13 +19,13 @@
 - 普通计算模式效果如下：
 
 <div style="text-align: center;"> 
-	<img src="https://pic.imgdb.cn/item/66875f1bd9c307b7e92ac000.png" alt="普通计算模式效果演示图片">
+	<img src="./display1.png" alt="普通计算模式效果演示图片">
 </div>
 
 - 科学计算模式效果如下：
 
 <div style="text-align: center;"> 
-	<img src="https://pic.imgdb.cn/item/66875f3fd9c307b7e92af696.png" alt="科学计算模式效果演示图片">
+	<img src="./display2.png" alt="科学计算模式效果演示图片">
 </div>
 
 - 更具体的功能演示视频见如下链接：
