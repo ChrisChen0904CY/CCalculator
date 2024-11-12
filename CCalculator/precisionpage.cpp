@@ -25,6 +25,7 @@ PrecisionPage::~PrecisionPage()
 
 void PrecisionPage::init(QVector<QString> sys) {
     this->ui->spinBox->setValue(sys[0].toLongLong());
+    this->ui->checkBox->setChecked(sys[1]=="1");
 }
 
 void PrecisionPage::connects() {
@@ -32,9 +33,18 @@ void PrecisionPage::connects() {
             &QSpinBox::valueChanged,
             this,
             &PrecisionPage::precisionUpdate);
+    connect(this->ui->checkBox,
+            &QCheckBox::stateChanged,
+            this,
+            &PrecisionPage::fdUpdate);
 }
 
 // 更新计算精度位数
 void PrecisionPage::precisionUpdate() {
     emit this->sysUpdate({"precision", QString::number(this->ui->spinBox->value())});
+}
+
+// 更新除法优化参数
+void PrecisionPage::fdUpdate() {
+    emit this->sysUpdate({"fd", this->ui->checkBox->isChecked() ? "1" : "0"});
 }

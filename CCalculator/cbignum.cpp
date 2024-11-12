@@ -5,6 +5,10 @@ bool CBigNum::isNum(char c) {
 	return ('0' <= c && c <= '9');
 }
 
+bool isZero(vector<char> vec) {
+    return (vec.empty() || (vec.size()==1 && vec[0] == '0'));
+}
+
 CBigNum abs(const CBigNum& num) {
 	if (num.getPositive()) {
 		return num;
@@ -53,6 +57,14 @@ CBigNum CBigNum::getFrac() const {
 	return CBigNum({}, this->fracs);
 }
 
+void CBigNum::pushInt(char a) {
+    this->ints.push_back(a);
+}
+
+void CBigNum::pushFrac(char a) {
+    this->fracs.push_back(a);
+}
+
 void CBigNum::round(long long bits) {
 	if (this->fracs.size() <= bits) {
 		return;
@@ -66,7 +78,7 @@ void CBigNum::round(long long bits) {
 
 string CBigNum::to_str() const {
 	// Zero is the special case
-	if (this->ints.empty() && this->fracs.empty()) {
+    if (isZero(this->ints) && this->fracs.empty()) {
 		return "0";
 	}
   string s = this->positive ? "" : "-";
@@ -84,7 +96,7 @@ string CBigNum::to_str() const {
 
 /* ====== Construct & Deconstruct Functions ====== */
 CBigNum::CBigNum() {
-	ints = {};
+    ints = {};
 	fracs = {};
 }
 
@@ -136,7 +148,7 @@ CBigNum::CBigNum(string s) {
 	// Check the string first
 	// Check the first character
 	if (s[0] != '+' && s[0] != '-' && s[0] != '.' && !isNum(s[0])) {
-		ints = {};
+        ints = {};
 		fracs = {};
 		return;
 	}
@@ -155,13 +167,13 @@ CBigNum::CBigNum(string s) {
 				dotFind = true;
 			}
 			else {
-				ints = {};
+                ints = {};
 				fracs = {};
 				return;
 			}
 		}
 		else if (!isNum(s[i])) {
-			ints = {};
+            ints = {};
 			fracs = {};
 			return;
 		}
@@ -201,7 +213,7 @@ CBigNum::CBigNum(vector<char> ints, vector<char> fracs) {
 	// Check when copy values from given vector
 	for (auto c:ints) {
 		if (!isNum(c)) {
-			this->ints = {};
+            this->ints = {};
 			break;
 		}
 		this->ints.push_back(c);
@@ -335,9 +347,9 @@ bool CBigNum::operator<(const CBigNum other) const {
 
 bool CBigNum::operator==(const CBigNum other) const {
 	// 0 and 0 don't take care of positive
-	if ((this->ints.empty() && other.ints.empty()) && (this->fracs.empty() && other.fracs.empty())) {
+    if ((isZero(this->ints) && isZero(other.ints)) && (this->fracs.empty() && other.fracs.empty())) {
 		return true;
-	}
+    }
 	return (this->positive == other.positive) && (this->ints == other.ints) && (this->fracs == other.fracs);
 }
 
@@ -710,7 +722,12 @@ pair<CBigNum, CBigNum> CBigNum::intDivision(const CBigNum& other) const {
 		res = -res;
 		num1 = -num1;
 	}
-	return {res, num1 >> max(num1FracBits, num2FracBits)};
+    CBigNum reminder = num1 >> max(num1FracBits, num2FracBits);
+    reminder.zeroClear();
+    if(reminder.getInts().empty()) {
+        reminder.setInts({'0'});
+    }
+    return {res, reminder};
 }
 
 // Division

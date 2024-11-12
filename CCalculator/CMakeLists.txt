@@ -79,9 +79,8 @@ set_target_properties(CCalculator PROPERTIES
 
 # 加入 sql 链接必要的动态库
 target_link_libraries(CCalculator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
-                      Qt${QT_VERSION_MAJOR}::Sql
-                      Qt${QT_VERSION_MAJOR}::WebEngineWidgets)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Sql WebEngineWidgets REQUIRED)
+                      Qt${QT_VERSION_MAJOR}::Sql)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Sql REQUIRED)
 
 
 include(GNUInstallDirs)

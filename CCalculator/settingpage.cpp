@@ -62,7 +62,8 @@ SettingPage::SettingPage(QWidget *parent, QMap<QString, QString> sysParam)
     this->ui->stackedWidget->removeWidget(this->ui->page_2);
 
     // 设置精度和算法的设置页面
-    precisionPage = new PrecisionPage(nullptr, {sysParam["precision"]});
+    precisionPage = new PrecisionPage(nullptr, {sysParam["precision"],
+                                                sysParam["fd"]});
     this->ui->stackedWidget->addWidget(precisionPage);
 
     // 设置显示方法的设置页面

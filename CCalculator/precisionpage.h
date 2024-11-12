@@ -25,6 +25,8 @@ signals:
 public slots:
     // 更新计算精度位数
     void precisionUpdate();
+    // 更新除法优化参数
+    void fdUpdate();
 
 private:
     Ui::PrecisionPage *ui;

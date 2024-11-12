@@ -26,6 +26,89 @@ CBigNum any2BigNum(T value) {
 }
 
 /**
+* @Brief: Better Division optimized by Repeating Decimal Period Theorem
+* @Author: Chris Chan
+* @Date: 2024/11/12
+*/
+template <typename T>
+CBigNum fdivision(const CBigNum& a, const T& b) {
+    bool positive = a.getPositive() && (CBigNum(b).getPositive());
+    CBigNum num1 = abs(a);
+    CBigNum num2 = abs(CBigNum(b));
+    if(num2 == 0) {
+        throw "Unsupport Operation: Divided by 0.";
+        return CBigNum(-1);
+    }
+    if(num1 == 0) {
+        return CBigNum(0);
+    }
+    // Integerize
+    long long num1FracBits = num1.getFracs().size();
+    long long num2FracBits = num2.getFracs().size();
+    num1 <<= max(num1FracBits, num2FracBits);
+    num2 <<= max(num1FracBits, num2FracBits);
+    // Simplify
+    CBigNum _gcd = gcd(num1, num2);
+    num1 /= _gcd;
+    num2 /= _gcd;
+    // Find the Largest Repeat Decimal Period
+    long long unrepeat_cnt = 0;
+    CBigNum tmp = num2;
+    while(tmp % 2 == 0 || tmp % 5 == 0) {
+        if(tmp % 2 == 0){
+            tmp /= 2;
+            unrepeat_cnt++;
+        }
+        if(tmp % 5 == 0){
+            tmp /= 5;
+            unrepeat_cnt++;
+        }
+    }
+    // Unrepeat
+    if(tmp == 1){
+        return positive ? num1/num2 : -num1/num2;
+    }
+    // Do Exist a Repeat Period
+    else{
+        CBigNum tens(10);
+        while(tens % tmp != 1) {
+            if(tens.getInts().size() == num1.getResFracBits()) {
+                break;
+            }
+            tens <<= 1;
+        }
+        if(tens.getInts().size() == num1.getResFracBits()) {
+            return positive ? num1/num2 : -num1/num2;
+        }
+        // Extract the integer part first
+        pair<CBigNum, CBigNum> res = num1.intDivision(num2);
+        num1 = res.second << 1;
+        short tmp = 0;
+        vector<char> repeats;
+        while(repeats.size() < tens.getInts().size()) {
+            if (num1 < num2) {
+                num1 <<= 1;
+                res.first.pushFrac('0'+tmp%10);
+                if(res.first.getFracs().size() > unrepeat_cnt)  {
+                    repeats.push_back('0'+tmp%10);
+                }
+                tmp = 0;
+            }
+            else {
+                num1 -= num2;
+                tmp++;
+            }
+        }
+        // Fill the rest part with the repeat period
+        for(long long i = 0; i <= num1.getResFracBits()-res.first.getFracs().size(); i++) {
+            res.first.pushFrac(repeats[i%repeats.size()]);
+        }
+        res.first.round(num1.getResFracBits());
+        return positive ? res.first : -res.first;
+    }
+}
+
+/**
 * @Brief: Polynomial Calculation
 * @Author: Chris Chan
 * @Date: 2024/09/20
@@ -57,7 +140,7 @@ CBigNum poly_value(const T& value, vector<T> A) {
 * @Author: Chris Chan
 * @Date: 2024/09/18
 */
-CBigNum pow(const CBigNum& num, long long value);
+CBigNum pow(const CBigNum& num, long long value, bool fd = true);
 
 /**
 * @Brief: nrt, sqrt, cbrt for positive integer n
@@ -65,7 +148,7 @@ CBigNum pow(const CBigNum& num, long long value);
 * @Date: 2024/09/20
 */
 template <typename T>
-CBigNum nrt(const T& value, long long n) {
+CBigNum nrt(const T& value, long long n, bool fd = true) {
 	  CBigNum a(value);
 	  // Value Check
 	  if (a < 0) {
@@ -93,13 +176,23 @@ CBigNum nrt(const T& value, long long n) {
 			}
 		}
 		// Newton Iteration
-		CBigNum x0(10.5);
-		CBigNum x1 = x0*(n-1)/n + a/n/pow(x0, n-1);
+        CBigNum x0(10.5), x1;
+        if(fd) {
+            CBigNum x1 = x0*(n-1)/n + fdivision(fdivision(a, n), pow(x0, n-1));
+        }
+        else {
+            CBigNum x1 = x0*(n-1)/n + a/n/pow(x0, n-1);
+        }
 		// The num of iteration limitation
 		int iter_limit = 100;
 		int k = 0;
 		while(k < iter_limit && abs(x1*x1 - a) >= (CBigNum(1) >> (a.getResFracBits()+1))) {
-			x1 = x0*(1-1.0/n) + a/n/pow(x0, n-1);
+            if(fd) {
+                x1 = x0*(1-1.0/n) + fdivision(fdivision(a, n), pow(x0, n-1));
+            }
+            else {
+                x1 = x0*(1-1.0/n) + a/n/pow(x0, n-1);
+            }
 			x1.round(a.getResFracBits()+1);
 			if (x0 == x1) {
 				break;
@@ -113,13 +206,13 @@ CBigNum nrt(const T& value, long long n) {
 }
 
 template <typename T>
-CBigNum sqrt(const T& value) {
-	return nrt(value, 2);
+CBigNum sqrt(const T& value, bool fd = true) {
+    return nrt(value, 2, fd);
 }
 
 template <typename T>
-CBigNum cbrt(const T& value) {
-	return nrt(value, 3);
+CBigNum cbrt(const T& value, bool fd = true) {
+    return nrt(value, 3, fd);
 }
 
 /**
@@ -128,18 +221,18 @@ CBigNum cbrt(const T& value) {
 * @Date: 2024/09/19
 */
 // Find the log_N
-long long log_N_find(const CBigNum& a);
+long long log_N_find(const CBigNum& a, bool fd = true);
 
 // ln
-CBigNum ln(const CBigNum& a);
+CBigNum ln(const CBigNum& a, bool fd = true);
 template <typename T>
-CBigNum ln(const T& value) {
+CBigNum ln(const T& value, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return ln(num);
+    return ln(num, fd);
 }
 // log
 template <typename T>
-CBigNum log(const CBigNum& base, const T& value) {
+CBigNum log(const CBigNum& base, const T& value, bool fd = true) {
 	// Check the base first
 	if (base <= 0 || base == 1) {
 		throw "Log Base Error: Base must be positive and not 1.";
@@ -156,7 +249,10 @@ CBigNum log(const CBigNum& base, const T& value) {
 		one.setResFracBits(base.getResFracBits());
 		return one;
 	}
-	return ln(natrual) / ln(base);
+    if(fd) {
+        return fdivision(ln(natrual), ln(base));
+    }
+    return ln(natrual, false) / ln(base, false);
 }
 
 /**
@@ -164,9 +260,9 @@ CBigNum log(const CBigNum& base, const T& value) {
 * @Author: Chris Chan
 * @Date: 2024/09/21
 */
-long long SINCOS_N_find(const CBigNum& x);
-CBigNum SINTNV(const CBigNum& x);
-CBigNum COSTNV(const CBigNum& x);
+long long SINCOS_N_find(const CBigNum& x, bool fd = true);
+CBigNum SINTNV(const CBigNum& x, bool fd = true);
+CBigNum COSTNV(const CBigNum& x, bool fd = true);
 
 /**
 * @Brief: Trigonometric functions
@@ -174,32 +270,32 @@ CBigNum COSTNV(const CBigNum& x);
 * @Date: 2024/09/21
 */
 // sin
-CBigNum sin(const CBigNum& a);
+CBigNum sin(const CBigNum& a, bool fd = true);
 template <typename T>
-CBigNum sin(const T& value) {
+CBigNum sin(const T& value, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return sin(num);
+    return sin(num, fd);
 }
 // cos
-CBigNum cos(const CBigNum& a);
+CBigNum cos(const CBigNum& a, bool fd = true);
 template <typename T>
-CBigNum cos(const T& value) {
+CBigNum cos(const T& value, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return cos(num);
+    return cos(num, fd);
 }
 // tan
-CBigNum tan(const CBigNum& a);
+CBigNum tan(const CBigNum& a, bool fd = true);
 template <typename T>
-CBigNum tan(const T& value) {
+CBigNum tan(const T& value, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return tan(num);
+    return tan(num, fd);
 }
 // cot
-CBigNum cot(const CBigNum& a);
+CBigNum cot(const CBigNum& a, bool fd = true);
 template <typename T>
-CBigNum cot(const T& value) {
+CBigNum cot(const T& value, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return cot(num);
+    return cot(num, fd);
 }
 
 /**
@@ -207,14 +303,14 @@ CBigNum cot(const T& value) {
 * @Author: Chris Chan
 * @Date: 2024/09/22
 */
-long long EXP_N_find(const CBigNum& x);
-CBigNum EXPTNV(const CBigNum& x);
+long long EXP_N_find(const CBigNum& x, bool fd = true);
+CBigNum EXPTNV(const CBigNum& x, bool fd = true);
 // e^x
-CBigNum exp(const CBigNum& a);
+CBigNum exp(const CBigNum& a, bool fd = true);
 template <typename T>
-CBigNum exp(const T& value) {
+CBigNum exp(const T& value, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return exp(num);
+    return exp(num, fd);
 }
 
 /**
@@ -223,7 +319,7 @@ CBigNum exp(const T& value) {
 * @Date: 2024/09/18
 */
 template <typename T>
-CBigNum pow(const CBigNum& num, const T& value) {
+CBigNum pow(const CBigNum& num, const T& value, bool fd = true) {
     CBigNum other = CBigNum(value);
     // Deal with 0 power
     if (other == 0) {
@@ -251,20 +347,20 @@ CBigNum pow(const CBigNum& num, const T& value) {
    		// Deal with the negative power
    		CBigNum one(1);
    		one.setResFracBits(num.getResFracBits());
-   		return posPower ? res : (one/res);
+        return posPower ? res : (fd ? fdivision(one, res) : one/res);
     }
     // a^x = e^(x*lna)
     else {
         if (num < 0) {
             throw "Can't deal with a^x when a<0.";
         }
-        CBigNum tmp = other*ln(num);
+        CBigNum tmp = other*ln(num, fd);
         tmp.setResFracBits(num.getResFracBits());
-        res = exp(tmp);
+        res = exp(tmp, fd);
         // Deal with the negative power
    		CBigNum one(1);
    		one.setResFracBits(num.getResFracBits());
-   		return posPower ? res : (one/res);
+        return posPower ? res : (fd ? fdivision(one, res) : one/res);
     }
 }
 
@@ -274,41 +370,41 @@ CBigNum pow(const CBigNum& num, const T& value) {
 * @Date: 2024/09/23
 */
 // ASin Iteratoin
-long long ASIN_N_find(const CBigNum& x);
-CBigNum ASINTNV(const CBigNum& x);
+long long ASIN_N_find(const CBigNum& x, bool fd = true);
+CBigNum ASINTNV(const CBigNum& x, bool fd = true);
 // ATan Iteratoin
-long long ATAN_N_find(const CBigNum& x);
-CBigNum ATANTNV(const CBigNum& x);
+long long ATAN_N_find(const CBigNum& x, bool fd = true);
+CBigNum ATANTNV(const CBigNum& x, bool fd = true);
 // arcsin
-CBigNum asin(const CBigNum& a, CBigNum PI_Given=PI);
+CBigNum asin(const CBigNum& a, CBigNum PI_Given=PI, bool fd = true);
 template <typename T>
-CBigNum asin(const T& value, CBigNum PI_Given=PI) {
+CBigNum asin(const T& value, CBigNum PI_Given=PI, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return asin(num, PI_Given);
+    return asin(num, PI_Given, fd);
 }
 // arccos
-CBigNum acos(const CBigNum& a, CBigNum PI_Given=PI);
+CBigNum acos(const CBigNum& a, CBigNum PI_Given=PI, bool fd = true);
 template <typename T>
-CBigNum acos(const T& value, CBigNum PI_Given=PI) {
+CBigNum acos(const T& value, CBigNum PI_Given=PI, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return acos(num, PI_Given);
+    return acos(num, PI_Given, fd);
 }
 // arctan
-CBigNum atan(const CBigNum& a, CBigNum PI_Given=PI);
+CBigNum atan(const CBigNum& a, CBigNum PI_Given=PI, bool fd = true);
 template <typename T>
-CBigNum atan(const T& value, CBigNum PI_Given=PI) {
+CBigNum atan(const T& value, CBigNum PI_Given=PI, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return atan(num, PI_Given);
+    return atan(num, PI_Given, fd);
 }
 // arccot
-CBigNum acot(const CBigNum& a, CBigNum PI_Given=PI);
+CBigNum acot(const CBigNum& a, CBigNum PI_Given=PI, bool fd = true);
 template <typename T>
-CBigNum acot(const T& value, CBigNum PI_Given=PI) {
+CBigNum acot(const T& value, CBigNum PI_Given=PI, bool fd = true) {
     CBigNum num = any2BigNum(value);
-    return acot(num, PI_Given);
+    return acot(num, PI_Given, fd);
 }
 
 // Calculate π
-CBigNum PI_Calculate(long long bits);
+CBigNum PI_Calculate(long long bits, bool fd = true);
 
 #endif

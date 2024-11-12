@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 // 软件版本号
-#define CURRENT_VERSION "1.6.0"
+#define CURRENT_VERSION "1.7.0"
 
 #include <QApplication>
 #include <QScreen>
@@ -22,6 +22,7 @@
 #include <QDesktopServices>
 #include <QTimer>
 #include <QFileInfo>
+#include <QElapsedTimer>
 
 // SQL 数据库相关包的导入
 #include <QSqlDatabase>
@@ -384,7 +385,8 @@ private:
                                                    {"copyAll", "1"},
                                                    {"suffixZero", "0"},
                                                    {"ePower", "1"},
-                                                   {"PI", "3.14159265358979324"}};
+                                                   {"PI", "3.14159265358979324"},
+                                                   {"fd", "1"}};
     QMap<QString, QString> sysParameters = {};
     // 缓存的圆周率
     CBigNum PI_Cached = defaultSysParameters["PI"].toStdString();

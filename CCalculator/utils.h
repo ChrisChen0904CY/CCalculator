@@ -34,7 +34,8 @@ CBigNum pprod(CBigNum n);
 string num_extract(string formula, vector<CBigNum>& vec, long long bits);
 CBigNum compute(string formula, vector<CBigNum> &num_vec, CBigNum &PI_Cached,
                 bool rad=true,
-                long long bits = 8);
+                long long bits=8,
+                bool fd=true);
 string beautiful_double_string(string s);
 
 #endif // UTILS_H

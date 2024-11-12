@@ -110,7 +110,8 @@ string num_extract(string formula, vector<CBigNum>& vec, long long bits)
 // 计算函数
 CBigNum compute(string formula, vector<CBigNum> &num_vec, CBigNum &PI_Cached,
                 bool rad,
-                long long bits)
+                long long bits,
+                bool fd)
 {
     // 空表达式
     if (formula.size() == 0) {
@@ -169,43 +170,43 @@ CBigNum compute(string formula, vector<CBigNum> &num_vec, CBigNum &PI_Cached,
                 // sin
                 if (formula[bracket_pos.top()-1] == 'S') {
                     if (!rad) {
-                        cur_res = cur_res/180*PI;
+                        cur_res = fd ? fdivision(cur_res, 180)*PI : cur_res/180*PI;
                     }
-                    cur_res = sin(cur_res);
+                    cur_res = sin(cur_res, fd);
                 }
                 // arcsin
                 else if (formula[bracket_pos.top()-1] == 's') {
-                    cur_res = asin(cur_res, PI_Cached);
+                    cur_res = asin(cur_res, PI_Cached, fd);
                     if (!rad) {
-                        cur_res = cur_res*180/PI;
+                        cur_res = fd ? fdivision(cur_res*180, PI) : cur_res*180/PI;
                     }
                 }
                 // cos
                 else if (formula[bracket_pos.top()-1] == 'C') {
                     if (!rad) {
-                        cur_res = cur_res/180*PI;
+                        cur_res = fd ? fdivision(cur_res, 180)*PI : cur_res/180*PI;
                     }
-                    cur_res = cos(cur_res);
+                    cur_res = cos(cur_res, fd);
                 }
                 // arccos
                 else if (formula[bracket_pos.top()-1] == 'c') {
-                    cur_res = acos(cur_res, PI_Cached);
+                    cur_res = acos(cur_res, PI_Cached, fd);
                     if (!rad) {
-                        cur_res = cur_res*180/PI;
+                        cur_res = fd ? fdivision(cur_res*180, PI) : cur_res*180/PI;
                     }
                 }
                 // tan
                 else if (formula[bracket_pos.top()-1] == 'T') {
                     if (!rad) {
-                        cur_res = cur_res/180*PI;
+                        cur_res = fd ? fdivision(cur_res, 180)*PI : cur_res/180*PI;
                     }
-                    cur_res = tan(cur_res);
+                    cur_res = tan(cur_res, fd);
                 }
                 // arctan
                 else if (formula[bracket_pos.top()-1] == 't') {
-                    cur_res = atan(cur_res, PI_Cached);
+                    cur_res = atan(cur_res, PI_Cached, fd);
                     if (!rad) {
-                        cur_res = cur_res*180/PI;
+                        fd ? fdivision(cur_res*180, PI) : cur_res*180/PI;
                     }
                 }
                 // ln
@@ -214,7 +215,7 @@ CBigNum compute(string formula, vector<CBigNum> &num_vec, CBigNum &PI_Cached,
                     if (cur_res <= 0) {
                         throw "对数运算中真数必须为非负数！";
                     }
-                    cur_res = ln(cur_res);
+                    cur_res = ln(cur_res, fd);
                 }
             }
             // 结果入数字栈
@@ -455,7 +456,7 @@ CBigNum compute(string formula, vector<CBigNum> &num_vec, CBigNum &PI_Cached,
                     if (tmp_nums.top() == 0) {
                         throw "不能用0作分母！！！";
                     }
-                    tmp_res /= tmp_nums.top();
+                    tmp_res = fd ? fdivision(tmp_res, tmp_nums.top()) : tmp_res / tmp_nums.top();
                 }
                 // 操作完弹出当前临时操作符和数字
                 tmp_ops.pop();

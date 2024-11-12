@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent, bool lite)
     , liteVersion(lite)
 {
     ui->setupUi(this);
+    qDebug() << fdivision(CBigNum(1), 123597).to_str();
+    // 优化输入框的显示
+    this->ui->label->setAlignment(Qt::AlignRight | Qt::AlignBottom);
     // 为 Logo 标签绑上点击事件
     logoFilter = new ClickableLabelFilter(this);
     this->ui->label_3->installEventFilter(logoFilter);
@@ -470,13 +473,23 @@ void MainWindow::formula_display()
 // 结果显示
 void MainWindow::result_display()
 {
+    // 零直接显示不考虑任何设置
+    if (this->result == 0) {
+        this->ui->label_2->setText(QString::fromStdString(CBigNum(0).to_str()));
+        // 将光标归于表达式的末尾
+        currentCursor.first = this->formula_text.size();
+        currentCursor.second = this->formula_cal_text.size();
+        return;
+    }
     // 补齐尾缀零
     if(sysParameters["suffixZero"] == "1") {
         std::vector<char> newFrac = result.getFracs();
-        for(auto i = 0; i < result.getResFracBits()-result.getFracs().size(); i++) {
-            newFrac.push_back('0');
+        if(result.getResFracBits() > result.getFracs().size()) {
+            for(auto i = 0; i < result.getResFracBits()-result.getFracs().size(); i++) {
+                newFrac.push_back('0');
+            }
+            result.setFracs(newFrac);
         }
-        result.setFracs(newFrac);
     }
     else {
         result.zeroClear();
@@ -503,7 +516,7 @@ void MainWindow::result_display()
                     if(this->result.getFracs()[i] != '0') {
                         sciDisplay += this->result.getFracs()[i];
                         sciDisplay += '.';
-                        for(auto j = i; j < ((i+9 < this->result.getFracs().size()) ? 9 : this->result.getFracs().size()); j++) {
+                        for(auto j = i+1; j < ((i+9 < this->result.getFracs().size()) ? 9 : this->result.getFracs().size()); j++) {
                             sciDisplay += this->result.getFracs()[j];
                         }
                         sciDisplay += (sysParameters["ePower"]=="1" ? "E-" : "×10^(-")+to_string(zeros+1);
@@ -869,11 +882,17 @@ void MainWindow::equal_clicked()
     }
 
     try {
+        QElapsedTimer timer;
+        timer.start();
         this->result = compute(processed_formula,
                                num_vec,
                                this->PI_Cached,
                                this->rad,
-                               this->sysParameters["precision"].toLongLong());
+                               this->sysParameters["precision"].toLongLong(),
+                               this->sysParameters["fd"]=="1");
+        // 获取计算耗时
+        qint64 elapsedTime = timer.elapsed();
+        qDebug() << "计算用时:" << elapsedTime << "ms";
         this->result_text = QString::fromStdString(this->result.to_str());
         // 输入非空时结果写入数据库
         if (this->formula_text.size() > 0) {
