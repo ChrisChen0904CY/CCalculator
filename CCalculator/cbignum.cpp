@@ -787,6 +787,54 @@ void CBigNum::operator/=(const CBigNum& other) {
 	*this = (*this) / other;
 }
 
+CBigNum CBigNum::ndivision(const CBigNum& other) const {
+    // Check whetcher the number is divided by 0
+    if (other == CBigNum(0)) {
+        throw "Unsupport Operation: Divided by 0.";
+        return {};
+    }
+    pair<CBigNum, CBigNum> intRes = this->intDivision(other);
+    CBigNum res, num1;
+    res = intRes.first; num1 = intRes.second;
+    // Integerize
+    long long num1FracBits, num2FracBits;
+    num1FracBits = num1.fracs.size();
+    num2FracBits = other.fracs.size();
+    num1 = abs(num1) * pow(10, max(num1FracBits, num2FracBits)+1);
+    CBigNum num2 = abs(other) * pow(10, max(num1FracBits, num2FracBits));
+    // Compute one more bit to rounding off
+    short tmp = 0;
+    while (res.fracs.size() <= resFracBits) {
+        if (num1 < num2) {
+            num1 *= 10;
+            res.fracs.push_back('0'+tmp%10);
+            tmp = 0;
+        }
+        else {
+            num1 -= num2;
+            tmp++;
+        }
+    }
+    // Rounding off
+    if (res.fracs.back() >= '5') {
+        res += CBigNum(1) >> (long long)(resFracBits);
+    }
+    // Flip the sysmbol while needed
+    if (res.positive != (this->getPositive() == other.getPositive())) {
+        res = -res;
+    }
+    // Chop the last one
+    res.fracs.erase(res.fracs.end()-1);
+    // Set the resFracBits
+    res.setResFracBits(this->resFracBits);
+    // Push a zero to ints while it's empty
+    if (res.getInts().empty()) {
+        res.setInts({'0'});
+    }
+    res.zeroClear();
+    return res;
+}
+
 // Mod
 CBigNum CBigNum::operator%(const CBigNum& other) const {
 	return this->intDivision(other).second;

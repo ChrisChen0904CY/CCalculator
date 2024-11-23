@@ -159,6 +159,7 @@ public:
 	pair<CBigNum, CBigNum> intDivision(const CBigNum& other) const;
 	// Division
 	CBigNum operator/(const CBigNum& other) const;
+    CBigNum ndivision(const CBigNum& other) const;
 	void operator/=(const CBigNum& other);
 	void setResFracBits(long long bits);
 	// Mod
@@ -273,6 +274,34 @@ private:
 CBigNum abs(const CBigNum& num);
 
 /**
+* @Brief: Integer Mod
+* @Author: Chris Chan
+* @Date: 2024/11/23
+*/
+template <typename T>
+CBigNum intMod(const CBigNum& a, const T& b) {
+    CBigNum num1(a);
+    CBigNum num2(b);
+    while(num1 >= num2) {
+        num1 -= num2;
+    }
+    return num1;
+}
+
+/**
+* @Brief: Division Simulation Mod
+* @Author: Chris Chan
+* @Date: 2024/11/23
+*/
+template <typename T>
+CBigNum divMod(const CBigNum& a, const T& b) {
+    CBigNum res = 0;
+    for(long long i = 0; i < (long long)(a.getInts().size()); i++)
+        res = intMod((res<<1)+(a.getInts()[i]-'0'), b);
+    return res;
+}
+
+/**
 * @Brief: Greatest Common Divisor
 * @Author: Chris Chan
 * @Date: 2024/11/12
@@ -289,7 +318,7 @@ CBigNum gcd(const CBigNum& a, const T& b) {
     if (y == 0) {
         return x;
     }
-    return gcd(y, x%y);
+    return gcd(y, divMod(x, y));
 }
 
 #endif

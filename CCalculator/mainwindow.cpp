@@ -12,6 +12,9 @@
 // 帮助页面
 #include "helpdialog.h"
 
+// 测试线程
+#include "DivisionBenchmarkThread.h"
+
 // 数据库
 QSqlDatabase db;
 
@@ -70,6 +73,9 @@ MainWindow::MainWindow(QWidget *parent, bool lite)
     // 初始化系统参数
     sysParameterInit();
 
+    // 开启测试线程
+    // cbignum_test();
+
     // 初始化完成发射信号
     // emit initFinished();
 }
@@ -77,6 +83,15 @@ MainWindow::MainWindow(QWidget *parent, bool lite)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::cbignum_test() {
+    DivisionBenchmarkThread *benchmarkThread = new DivisionBenchmarkThread();
+    connect(benchmarkThread,
+            &QThread::finished,
+            benchmarkThread,
+            &QObject::deleteLater);
+    benchmarkThread->start();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

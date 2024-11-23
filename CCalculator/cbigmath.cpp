@@ -4,14 +4,14 @@ CBigNum pow(const CBigNum& num, long long value, bool fd) {
     CBigNum other = value;
     // Deal with 0 power
     if (other == 0) {
-    	return CBigNum(1);
+        return CBigNum(1);
     }
     CBigNum res(1);
     bool posPower = other.getPositive();
     other = abs(other);
     // Integer Power
     CBigNum base = num;
-   	while (other > 0) {
+    while (other > 0) {
         if (other % 2 == 1) {
             res *= base;
         }
@@ -47,7 +47,7 @@ long long log_N_find(const CBigNum& a, bool fd) {
 	return log_N;
 }
 
-CBigNum ln(const CBigNum& a, bool fd) {
+CBigNum ln(const CBigNum& a, bool fd, bool naive) {
     CBigNum num = a;
     long long scaled_k = 0;
     
@@ -61,7 +61,7 @@ CBigNum ln(const CBigNum& a, bool fd) {
         num <<= 1;
         scaled_k++;
     }
-    
+
     // Handle numbers greater than 1 by reducing them
     long long k = 0;
     while (num > 10) {
@@ -74,7 +74,7 @@ CBigNum ln(const CBigNum& a, bool fd) {
         x = fdivision(num - 1, num + 1);
     }
     else {
-        x = (num - 1)/(num + 1);
+        x = naive ? (num - 1).ndivision(num + 1) : (num - 1)/(num + 1);
     }
     CBigNum xx = x*x;
     long long log_N = log_N_find(x, fd);
@@ -88,7 +88,7 @@ CBigNum ln(const CBigNum& a, bool fd) {
             y = fdivision(CBigNum(1), nk)+xx*y;
         }
         else {
-            y = CBigNum(1)/nk+xx*y;
+            y = naive ? CBigNum(1).ndivision(CBigNum(nk)) : CBigNum(1)/nk+xx*y;
         }
         y.round(num.getResFracBits()+1);
     }
@@ -96,6 +96,47 @@ CBigNum ln(const CBigNum& a, bool fd) {
     // Adding the correction term for the number of divisions we performed
     CBigNum ln10("2.302585092994046");
     CBigNum result = x*y*2.0 + ln10 * (k-scaled_k);
+
+    result.round(num.getResFracBits());
+    result.setResFracBits(num.getResFracBits());
+    return result;
+}
+
+CBigNum naive_ln(const CBigNum& a, bool fd, bool naive) {
+    CBigNum num = a;
+
+    // Check the natural first
+    if (num <= 0) {
+        throw "Log Natural Error: Natural must be positive.";
+        return CBigNum(0);
+    }
+
+    CBigNum x;
+    if(fd) {
+        x = fdivision(num - 1, num + 1);
+    }
+    else {
+        x = naive ? (num - 1).ndivision(num + 1) : (num - 1)/(num + 1);
+    }
+    CBigNum xx = x*x;
+    long long log_N = log_N_find(x, fd);
+    long long nk = 2*log_N+1;
+    CBigNum y = CBigNum(1)/nk;
+
+    for(long long i = 0; i < log_N; i++)
+    {
+        nk = nk - 2;
+        if(fd) {
+            y = fdivision(CBigNum(1), nk)+xx*y;
+        }
+        else {
+            y = naive ? CBigNum(1).ndivision(CBigNum(nk)) : CBigNum(1)/nk+xx*y;
+        }
+        y.round(num.getResFracBits()+1);
+    }
+
+    // Adding the correction term for the number of divisions we performed
+    CBigNum result = x*y*2.0;
 
     result.round(num.getResFracBits());
     result.setResFracBits(num.getResFracBits());
@@ -152,7 +193,9 @@ CBigNum COSTNV(const CBigNum& x, bool fd) {
 	CBigNum k(2*N);
 	while (k > 0) {
         if(fd) {
-            y = one - fdivision(fdivision(y*xx, k), k-1);
+            CBigNum tmp = y*fdivision(xx, k);
+            tmp.round(x.getResFracBits()+1);
+            y = one - fdivision(tmp, k-1);
         }
         else {
             y = one - y*xx/k/(k-1);
@@ -297,21 +340,26 @@ CBigNum EXPTNV(const CBigNum& x, bool fd) {
 	return y;
 }
 
-CBigNum exp(const CBigNum& a, bool fd) {
+CBigNum exp(const CBigNum& a, bool fd, bool naive) {
     CBigNum one(1);
     one.setResFracBits(a.getResFracBits());
     if (a == 0) {
         return one;
     }
     else if (a < 0) {
-        return fd ? fdivision(one, exp(-a, fd)) : one/exp(-a, fd);
+        return fd ? fdivision(one, exp(-a, fd, naive)) : one/exp(-a, fd, naive);
 	}
 	// Scaled bit number to (0, 10)
     CBigNum x(a);
+    if (naive) {
+        CBigNum ans = EXPTNV(x, fd);
+        ans.round(a.getResFracBits());
+        return ans;
+    }
     long long k = 0;
 	if (x > 10) {
         k = (long long)(x.getInts().size()) - 1;
-		x >>= k;
+        x >>= k;
     }
     CBigNum ans = pow(EXPTNV(x, fd), one<<k);
 	ans.round(a.getResFracBits()); 
@@ -330,7 +378,7 @@ long long ASIN_N_find(const CBigNum& x, bool fd) {
 	k1 = 1; k2 = 2;
 	while(1) {
 		if(Rn < epsilon) break;
-        tmp *= fd ? fdivision(xx*k1, k2) : xx*k1/k2;
+        tmp *= fd ? xx*fdivision(k1, k2) : xx*k1/k2;
         Rn = fd ? fdivision(tmp, 2*N) : tmp/(2*N);
 		tmp.round(x.getResFracBits()+1);
 		Rn.round(x.getResFracBits()+1);
@@ -523,7 +571,7 @@ CBigNum PI_Calculate(long long bits, bool fd) {
     for(i = 0; i <= bits/14+1; i++) {
         pi += fd ? fdivision(M * L,  X) : (M * L) / X;
         CBigNum i6 = i*6;
-        CBigNum i3 = fd ? fdivision(i6, 2) : i6/2;
+        CBigNum i3 = i6/2;
         M *= (i6+1)*(i6+2)*(i6+3)*(i6+4)*(i6+5)*(i6+6);
         M = fd ? fdivision(fdivision(fdivision(M, i3+1), i3+2), i3+3) : M / (i3+1) / (i3+2) / (i3+3);
         M = fd ? fdivision(M, (i+1)*(i+1)*(i+1)) : M / ((i+1)*(i+1)*(i+1));

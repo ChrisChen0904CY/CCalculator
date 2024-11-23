@@ -65,6 +65,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr, bool lite=true);
     ~MainWindow();
+    // CBigNum&CBigMath测试函数
+    void cbignum_test();
     // 窗口移动到屏幕中央
     void move_to_center(QWidget* widget);
     // 所有按钮载入按钮容器
